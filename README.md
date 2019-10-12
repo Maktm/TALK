@@ -10,8 +10,15 @@ Once installed, open a terminal and run the following command to clone the repos
 
 This will create a new directory named `TALK`. To import the project into Android Studio, open Android Studio then hit `File` > `Open` then choose the new directory that was created.
 
-## Authors
+## Set up a virtual device using AVD
+To set up a new virtual device, open Android Studio then choose the drop-down menu for AVD devices next to the 'app' and choose 'Open AVD Manager'. From the AVD Manager, choose `Create Virtual Device` then choose a device to use (e.g. Pixel 3). After hitting `Next`, switch to the `Other Images` tab and choose `Download` next to the first option.
 
+After agreeing then installing the image, hit `Next` then `Finish`.
+
+## Running the project
+Once you've set up a virtual device, you can hit `Run` > `Run` and it will start the chosen device, install the app, then open it.
+
+## Authors
 * Saeed Suleiman
 * Charlotte Phillips
 * Aishwarya Anand
