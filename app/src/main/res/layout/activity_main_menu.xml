@@ -40,17 +40,19 @@
             <ImageView
                 android:layout_alignParentRight="true"
                 android:src="@drawable/main_menu_settings"
-                android:layout_width="30dp"
-                android:layout_height="30dp"/>
+                android:layout_width="27dp"
+                android:layout_height="27dp"/>
         </RelativeLayout>
 
         <GridLayout
-            android:rowCount="2"
-            android:columnCount="2"
+            android:rowCount="3"
+            android:columnCount="1"
+            android:layout_marginTop="30dp"
             android:alignmentMode="alignMargins"
             android:columnOrderPreserved="false"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
             <androidx.cardview.widget.CardView
                 android:layout_width="wrap_content"
