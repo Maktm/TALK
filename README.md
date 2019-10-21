@@ -24,3 +24,9 @@ Once you've set up a virtual device, you can hit `Run` > `Run` and it will start
 * Aishwarya Anand
 * Ukoh Ndukwo
 * Michael Kiros
+
+## TODO
+All of these TODOs are specific to this branch (i.e. UI improvement, [issue #5](https://github.com/Maktm/TALK/issues/5)):
+
+* Create an activity for when you open the app for the first time
+* Add the transitions for the main menu
