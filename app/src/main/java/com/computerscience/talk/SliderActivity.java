@@ -10,5 +10,17 @@ public class SliderActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_slider);
+        
+        configuretoMainMenuButton();
+    }
+    
+    private void configuretoMainMenuButton() {
+        Button toMainMenu = (Button) findViewById(R.id.toMainMenu);
+        toMainMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(SliderActivity.this, MainMenuActivity.class));
+            }
+        });
     }
 }
