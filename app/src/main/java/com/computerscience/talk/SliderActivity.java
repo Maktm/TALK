@@ -3,6 +3,9 @@ package com.computerscience.talk;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.view.View;
+import android.content.Intent;
 
 public class SliderActivity extends AppCompatActivity {
 
