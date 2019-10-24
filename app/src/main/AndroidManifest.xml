@@ -12,6 +12,8 @@
         <activity android:name=".JournalActivity"></activity>
         <activity android:name=".GraphActivity"></activity>
         <activity android:name=".ResourcesActivity"></activity>
+        <activity android:name=".SliderActivity"></activity>
+        <activity android:name=".MainMenuActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
