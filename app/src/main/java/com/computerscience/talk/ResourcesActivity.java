@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.view.View;
 import android.content.Intent;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 public class ResourcesActivity extends AppCompatActivity {
 
@@ -17,10 +19,10 @@ public class ResourcesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resources);
 
-       // ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_resources, demoResources);
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_resources, demoResources);
 
-        //ListView listView = (ListView) findViewByID(R.id.mobile_list);
-        //listView.setAdapter(adapter);
+        ListView listView = (ListView) findViewByID(R.id.mobile_list);
+        listView.setAdapter(adapter);
     }
 
     private Object findViewByID(int mobile_list) {
