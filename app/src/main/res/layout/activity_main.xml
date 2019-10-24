@@ -22,7 +22,7 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/button6"
+        android:id="@+id/sadButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Sad"
@@ -34,7 +34,7 @@
         app:layout_constraintVertical_bias="0.367" />
 
     <Button
-        android:id="@+id/button7"
+        android:id="@+id/anxiousButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Anxious"
@@ -46,7 +46,7 @@
         app:layout_constraintVertical_bias="0.039" />
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/angryButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Angry"
@@ -58,7 +58,7 @@
         app:layout_constraintVertical_bias="0.21" />
 
     <Button
-        android:id="@+id/button9"
+        android:id="@+id/happyButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Happy"
