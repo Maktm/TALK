@@ -7,7 +7,7 @@
     tools:context=".MainMenuActivity">
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/toJournal"
         android:layout_width="364dp"
         android:layout_height="42dp"
         android:layout_marginTop="176dp"
@@ -17,7 +17,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/toResources"
         android:layout_width="360dp"
         android:layout_height="49dp"
         android:layout_marginTop="64dp"
@@ -27,7 +27,7 @@
         app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/toGraph"
         android:layout_width="357dp"
         android:layout_height="50dp"
         android:layout_marginTop="180dp"
