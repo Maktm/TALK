@@ -3,10 +3,10 @@ package com.computerscience.talk;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.app.Activity;
-import android.view.Menu;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+
+import java.util.ArrayList;
 
 public class ResourcesActivity extends AppCompatActivity {
 
@@ -18,13 +18,10 @@ public class ResourcesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_resources);
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_resources, demoResources);
+        ArrayList<String> arrayOfStuff = new ArrayList<>();
+        ArrayAdapter adapter = new ArrayAdapter<String>(this, R.layout.activity_resources, arrayOfStuff);
 
-        ListView listView = (ListView) findViewByID(R.id.mobile_list);
+        ListView listView = (ListView) findViewById(R.id.mobile_list);
         listView.setAdapter(adapter);
-    }
-
-    private Object findViewByID(int mobile_list) {
-        return true;
     }
 }
