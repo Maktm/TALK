@@ -1,61 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/main_activity_bg"
-    tools:context=".MainActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <ImageView
-        android:id="@+id/mainActivityHappyBtn"
-        android:layout_width="224dp"
-        android:layout_height="67dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="60dp"
-        android:background="@drawable/main_activity_happy_button"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <TextView
+        android:id="@+id/moodPrompt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="How are you feeling?"
+        android:textColor="@android:color/white"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/sadMoodBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mainActivityAngryBtn" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.689" />
 
     <ImageView
-        android:id="@+id/mainActivityAngryBtn"
-        android:layout_width="224dp"
-        android:layout_height="67dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/main_activity_angry_btn"
-        app:layout_constraintBottom_toTopOf="@+id/mainActivityHappyBtn"
-        app:layout_constraintEnd_toEndOf="@+id/mainActivityHappyBtn"
+        android:id="@+id/sadMoodBtn"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toTopOf="@+id/anxiousMoodBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/main_activity_sad_btn" />
+
+    <ImageView
+        android:id="@+id/anxiousMoodBtn"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toTopOf="@+id/angryMoodBtn"
+        app:layout_constraintEnd_toEndOf="@+id/sadMoodBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/sadMoodBtn"
+        app:srcCompat="@drawable/main_activity_anxious_btn" />
+
+    <ImageView
+        android:id="@+id/angryMoodBtn"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        app:layout_constraintBottom_toTopOf="@+id/happyMoodBtn"
+        app:layout_constraintEnd_toEndOf="@+id/anxiousMoodBtn"
         app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/mainActivityHappyBtn"
-        app:layout_constraintTop_toBottomOf="@+id/mainActivityAnxiousBtn" />
+        app:layout_constraintStart_toStartOf="@+id/anxiousMoodBtn"
+        app:srcCompat="@drawable/main_activity_angry_btn" />
 
     <ImageView
-        android:id="@+id/mainActivitySadBtn"
-        android:layout_width="224dp"
-        android:layout_height="67dp"
-        android:layout_marginTop="324dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/main_activity_sad_btn"
-        app:layout_constraintBottom_toTopOf="@+id/mainActivityAnxiousBtn"
-        app:layout_constraintEnd_toEndOf="@+id/mainActivityAnxiousBtn"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="@+id/mainActivityAnxiousBtn"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/mainActivityAnxiousBtn"
-        android:layout_width="224dp"
-        android:layout_height="67dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:background="@drawable/main_activity_anxious_btn"
-        app:layout_constraintBottom_toTopOf="@+id/mainActivityAngryBtn"
-        app:layout_constraintEnd_toEndOf="@+id/mainActivityAngryBtn"
-        app:layout_constraintStart_toStartOf="@+id/mainActivityAngryBtn"
-        app:layout_constraintTop_toBottomOf="@+id/mainActivitySadBtn" />
+        android:id="@+id/happyMoodBtn"
+        android:layout_width="250dp"
+        android:layout_height="70dp"
+        android:layout_marginBottom="112dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/angryMoodBtn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/angryMoodBtn"
+        app:srcCompat="@drawable/main_activity_happy_btn" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
