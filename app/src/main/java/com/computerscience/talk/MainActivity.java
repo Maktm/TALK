@@ -3,10 +3,9 @@ package com.computerscience.talk;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.widget.Button;
 import android.view.View;
 import android.content.Intent;
-//Hi world
+import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
     private void configureSadButton() {
-        Button sadButton = (Button) findViewById(R.id.sadButton);
+        ImageView sadButton = (ImageView) findViewById(R.id.sadMoodBtn);
         sadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -32,7 +31,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
     private void configureAnxiousButton() {
-        Button anxiousButton = (Button) findViewById(R.id.anxiousButton);
+        ImageView anxiousButton = (ImageView) findViewById(R.id.anxiousMoodBtn);
         anxiousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
     private void configureAngryButton() {
-        Button angryButton = (Button) findViewById(R.id.angryButton);
+        ImageView angryButton = (ImageView) findViewById(R.id.angryMoodBtn);
         angryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -52,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
     }
     
     private void configureHappyButton() {
-        Button happyButton = (Button) findViewById(R.id.happyButton);
+        ImageView happyButton = (ImageView) findViewById(R.id.happyMoodBtn);
         happyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

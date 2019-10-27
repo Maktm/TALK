@@ -1,6 +1,7 @@
 package com.computerscience.talk;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.os.Bundle;
 import android.widget.Button;
@@ -20,7 +21,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
     
     private void configuretoJournalButton() {
-        Button toJournal = (Button) findViewById(R.id.toJournal);
+        CardView toJournal = (CardView) findViewById(R.id.toJournal);
         toJournal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -30,7 +31,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
     
     private void configuretoResourcesButton() {
-        Button toResources = (Button) findViewById(R.id.toResources);
+        CardView toResources = (CardView) findViewById(R.id.toResources);
         toResources.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -40,7 +41,7 @@ public class MainMenuActivity extends AppCompatActivity {
     }
     
     private void configuretoGraphButton() {
-        Button toGraph = (Button) findViewById(R.id.toGraph);
+        CardView toGraph = (CardView) findViewById(R.id.toGraph);
         toGraph.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
