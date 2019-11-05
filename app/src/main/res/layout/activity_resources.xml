@@ -20,7 +20,7 @@
         app:layout_constraintVertical_bias="0.051" />
 
     <ListView
-        android:id="@+id/mobile_list"
+        android:id="@+id/listViewR"
         android:layout_width="374dp"
         android:layout_height="592dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -28,6 +28,7 @@
         app:layout_constraintHorizontal_bias="0.432"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.625" />
+        app:layout_constraintVertical_bias="0.625"
+        app:entries = "@array/sections" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
