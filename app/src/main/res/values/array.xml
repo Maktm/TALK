@@ -1,0 +1,10 @@
+<resources>
+    <string-array name="sections">
+        <item >Article 1</item>
+        <item >Fitness Exercise</item>
+        <item >Article 2</item>
+        <item >Article 3</item>
+        <item >Helpful Video</item>
+        <item >Fitness Exercise</item>
+    </string-array>
+</resources>
