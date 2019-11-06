@@ -24,10 +24,13 @@ public class GraphActivity extends AppCompatActivity {
 
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            entries.add(new Entry(i, i));
+            if (i % 2 == 0)
+                entries.add(new Entry(i, -i));
+            else
+                entries.add(new Entry(i, i));
         }
 
-        LineDataSet dataSet = new LineDataSet(entries, "Label");
+        LineDataSet dataSet = new LineDataSet(entries, "Mood");
         dataSet.setCircleColor(50);
         dataSet.setValueTextColor(100);
 
