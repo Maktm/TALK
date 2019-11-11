@@ -10,11 +10,13 @@ import android.content.Intent;
 
 public class MainActivity extends AppCompatActivity {
 
+    String mood = "Sad";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
+
         configureSadButton();
         configureAnxiousButton();
         configureAngryButton();
@@ -27,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, SliderActivity.class));
+                 String mood = "Sad";
             }
         });
     }
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, SliderActivity.class));
+                String mood = "Anxious";
             }
         });
     }
@@ -47,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, SliderActivity.class));
+                String mood = "Angry";
             }
         });
     }
@@ -57,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(MainActivity.this, SliderActivity.class));
+                String mood = "Happy";
             }
         });
     }

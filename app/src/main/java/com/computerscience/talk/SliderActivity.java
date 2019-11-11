@@ -9,6 +9,12 @@ import android.content.Intent;
 
 public class SliderActivity extends AppCompatActivity {
 
+    String mood;
+
+    SliderActivity(String m) {
+        mood = m;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

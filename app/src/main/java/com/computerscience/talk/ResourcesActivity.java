@@ -16,6 +16,12 @@ import java.util.ArrayList;
 
 public class ResourcesActivity extends Activity implements OnItemClickListener {
 
+    String mood;
+
+    ResourcesActivity(String m) {
+        mood = m;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,10 +34,10 @@ public class ResourcesActivity extends Activity implements OnItemClickListener {
     public void onItemClick(AdapterView<?> l, View v, int position, long id) {
         Log.i("HelloListView", "You clicked Item: " + id + " at position:" + position);
         Intent inten = new Intent();
-        inten.setClass(this, ListItemDetail.class);
+        inten.setClass(ResourcesActivity.this, ListItemDetail.class);
         inten.putExtra("position", position);
         inten.putExtra("id", id);
-        //startActivity(inten);
+        startActivity(inten);
     }
 
 }

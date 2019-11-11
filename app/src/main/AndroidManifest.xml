@@ -9,11 +9,12 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".JournalActivity"></activity>
-        <activity android:name=".GraphActivity"></activity>
-        <activity android:name=".ResourcesActivity"></activity>
-        <activity android:name=".SliderActivity"></activity>
-        <activity android:name=".MainMenuActivity"></activity>
+        <activity android:name=".Article1"></activity>
+        <activity android:name=".JournalActivity" />
+        <activity android:name=".GraphActivity" />
+        <activity android:name=".ResourcesActivity" />
+        <activity android:name=".SliderActivity" />
+        <activity android:name=".MainMenuActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

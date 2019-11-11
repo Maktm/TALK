@@ -11,6 +11,13 @@ import android.widget.TextView;
 
 public class ListItemDetail extends Activity {
 
+    String mood;
+    String[] myKeys;
+
+    ListItemDetail(String m) {
+        mood = m;
+    }
+
 @Override
 public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -19,8 +26,18 @@ public void onCreate(Bundle savedInstanceState) {
     Intent intent = getIntent();
     int position = intent.getIntExtra("position", 0);
 
-    // Here we turn your string.xml in an array
-    String[] myKeys = getResources().getStringArray(R.array.sections);
+    if (mood.equals("Sad")) {
+        myKeys = getResources().getStringArray(R.array.sectionsSad);
+    }
+    else if (mood.equals("Anxious")) {
+        myKeys = getResources().getStringArray(R.array.sectionsAnxious);
+    }
+    else if (mood.equals("Angry")) {
+        myKeys = getResources().getStringArray(R.array.sectionsAngry);
+    }
+    else {
+        myKeys = getResources().getStringArray(R.array.sectionsHappy);
+    }
 
     TextView myTextView = (TextView) findViewById(R.id.my_textview);
     myTextView.setText(myKeys[position]);
