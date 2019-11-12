@@ -1,31 +1,29 @@
 <resources>
     <string-array name="sectionsSad">
         <item >Article 1</item>
-        <item >Fitness Exercise</item>
+        <item >Fitness Exercise 2</item>
         <item >Article 2</item>
-        <item >Article 3</item>
         <item >Helpful Video</item>
-        <item >Fitness Exercise</item>
     </string-array>
 
     <string-array name = "sectionsAnxious">
         <item >Article 2</item>
         <item >Article 4</item>
-        <item >Fitness Exercise</item>
+        <item >Fitness Exercise 1</item>
         <item >Helpful Video</item>
     </string-array>
 
     <string-array name = "sectionsAngry">
-        <item >Article</item>
-        <item >Fitness</item>
-        <item >Video</item>
-        <item >Article</item>
+        <item >Article 4</item>
+        <item >Fitness Exercise 1</item>
+        <item >Helpful Video</item>
+        <item >Article 3</item>
     </string-array>
 
     <string-array name = "sectionsHappy">
-        <item >Fitness</item>
-        <item >Video</item>
-        <item >Article</item>
-        <item >Article</item>
+        <item >Fitness Exercise 2</item>
+        <item >Helpful Video</item>
+        <item >Article 3</item>
+        <item >Article 1</item>
     </string-array>
 </resources>
