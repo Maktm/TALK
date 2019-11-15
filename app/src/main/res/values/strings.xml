@@ -1,5 +1,9 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">TALK</string>
-    <string name="action_settings">Settings</string>
+    <string name="terms_of_use">Please read the &lt;a href="http://www.wedonthavearealdocument.com/">terms and conditions&lt;/a> before continuing to use the app</string>
+    <string name="location_and_apps_info">We use your current location and app activity to track your habits</string>
+    <string name="resources_info">Get articles, videos, and fitness routine recommendations to help improve your mood</string>
+    <string name="mood_graph_info">Track your daily moods over a period of time to see how you\'re progressing</string>
+    <string name="journal_info">Use your journal to keep track of your state of mind and reflect on past ideas</string>
+    <string name="talk_info">TALK is an app for tracking your moods and finding ways to improve it over time</string>
 </resources>
