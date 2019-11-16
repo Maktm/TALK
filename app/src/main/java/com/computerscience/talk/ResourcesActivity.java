@@ -16,11 +16,11 @@ import java.util.ArrayList;
 
 public class ResourcesActivity extends Activity implements OnItemClickListener {
 
-    String mood;
-
+    /*String mood;
+    ResourcesActivity() {}
     ResourcesActivity(String m) {
         mood = m;
-    }
+    }  //Keeps track of which mood the user is in */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +37,15 @@ public class ResourcesActivity extends Activity implements OnItemClickListener {
         inten.setClass(ResourcesActivity.this, ListItemDetail.class);
         inten.putExtra("position", position);
         inten.putExtra("id", id);
-        startActivity(inten);
-    }
+        if(id == 0) {
+            startActivity(new Intent(ResourcesActivity.this, Article1.class));
+        }
+        else if (id == 1) {
+            startActivity(new Intent(ResourcesActivity.this, Fitness1.class));
+        }
+        else if (id == 2) {
+            startActivity(new Intent(ResourcesActivity.this, VideoActivity.class));
+        }
+}
 
 }

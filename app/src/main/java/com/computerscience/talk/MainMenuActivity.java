@@ -9,11 +9,11 @@ import android.content.Intent;
 
 public class MainMenuActivity extends AppCompatActivity {
 
-    String mood;
-
-    MainMenuActivity(String m) {
-        mood = m;
-    }
+    //String mood;
+    //MainMenuActivity() {}
+    //MainMenuActivity(String m) {
+        //mood = m;
+    //}
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

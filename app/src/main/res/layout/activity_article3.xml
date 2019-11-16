@@ -10,26 +10,35 @@
         android:id="@+id/title3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lorem Ipsum"
-        android:textSize="36sp"
+        android:text="Dos and Donts of Dealing with Anger"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.042" />
+        app:layout_constraintVertical_bias="0.01" />
 
     <TextView
         android:id="@+id/contents3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="409dp"
+        android:layout_height="628dp"
         android:scrollbars="vertical"
-        android:text="blahblahblahblah"
+        android:text="We all experience anger. Managed in healthy ways, anger can be a positive thing—a red flag that something’s wrong, a catalyst for change, a good self-motivator. Handled poorly, anger can cause health and relationship problems. For many, especially those who didn’t have positive role models for anger management while growing up, dealing with anger can be confusing; it’s hard to know what to do with such a powerful and potentially destructive emotion. Examining your anger and using other anger management techniques can positively impact your health, relationships, and overall happiness. It's simple to do. Here are some proven anger management strategies.
+
+Understand Your Anger
+Dealing with anger is much easier when you know what you’re really angry about. Sometimes people may feel generally irritable because of stress, sleep deprivation, and other factors; more often, there’s a more specific reason for the anger. Either way, you can become more aware of what’s behind your anger if you keep an anger journal (a record of what makes you angry throughout the day) for a few weeks, then talk it over with a good friend, or even see a therapist to uncover underlying sources of anger, if you find yourself stumped. Once you are more aware of your sources of anger, you can take steps to deal with it.
+
+Express Yourself—Constructively
+Research shows that writing about anger and expressing it constructively can help reduce negative mood and even pain, particularly if the writing leads to ‘meaning-making,’ or speculation into the causes of the anger. This research, as well as other research on the benefits of journaling, supports the effectiveness of writing down your feelings and working through them on paper. The written expression of anger allows you to actively do something with your anger rather than just letting it make you feel bad.
+
+Take Action
+Your anger is telling you something. The first part of dealing with anger, as discussed, is examining it and listening to what it’s telling you about your life. The next part involves taking action. Knowing why you’re upset can go a long way, but eliminating your anger triggers and fixing problems that make you angry are equally important."
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.057"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.135" />
+        app:layout_constraintVertical_bias="0.951" />
 </androidx.constraintlayout.widget.ConstraintLayout>

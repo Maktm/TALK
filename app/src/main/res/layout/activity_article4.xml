@@ -10,26 +10,32 @@
         android:id="@+id/title4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lorem Ipsum"
-        android:textSize="36sp"
+        android:text="This Dog is Learning to Talk by Using a Soundboard"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.043" />
+        app:layout_constraintVertical_bias="0.024" />
 
     <TextView
         android:id="@+id/contents4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        android:text="wheeeeee"
+        android:text="A speech-language pathologist is teaching her 18-month-old dog how to talk using a sound board.
+Christina Hunger, 26, built the sound board to help Stella communicate not only words but her thoughts and feelings too. She said she's 'in constant amazement and shock' at how fast Stella, a Catahoula/Blue Heeler mix, is learning.
+'Last night, right before this video was taken, I accidentally said 'ball' on Stella's device while I was actually reaching for a different word. But, Stella took this very seriously! She picked up her ball, dropped it on her device, and said 'Good' (Translation: Good idea, Mom!)
+    I started recording right after she said 'Good' and caught the rest of her thought: 'Happy ball want outside!'
+Today when she heard some noises outside and wanted to go investigate, I told her we were staying inside. Stella responded by saying, 'Look' 9 TIMES IN A ROW, then 'Come outside.' She was clearly in a more frantic state,' Christina wrote about the video. 'I'm impressed that Stella is communicating with language during her more heightened states, not just when she’s calm and in a quiet space.'
+    Hunger says she began teaching Stella words at just 8 weeks old.
+    She now knows at least 29 words and can combine up to five words to make a phrase or sentence."
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.048"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.138" />
+        app:layout_constraintVertical_bias="0.672" />
 </androidx.constraintlayout.widget.ConstraintLayout>

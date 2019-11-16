@@ -10,26 +10,46 @@
         android:id="@+id/title2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Lorem Ipsum"
-        android:textSize="36sp"
+        android:text="16 Simple Ways to Reduce Stress and Anxiety"
+        android:textSize="30sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.08"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.023" />
+        app:layout_constraintVertical_bias="0.024" />
 
     <TextView
         android:id="@+id/content2"
-        android:layout_width="376dp"
-        android:layout_height="619dp"
+        android:layout_width="395dp"
+        android:layout_height="618dp"
         android:scrollbars="vertical"
-        android:text="shfuhrujdgh"
+        android:text="Stress and anxiety are common experiences for most people.
+In fact, 70% of adults in the US say they feel stress or anxiety daily.
+Here are 16 simple ways to relieve stress and anxiety.
+1. Exercise
+Exercise is one of the most important things you can do to combat stress.
+It might seem contradictory, but putting physical stress on your body through exercise can relieve mental stress.
+The benefits are strongest when you exercise regularly. People who exercise regularly are less likely to experience anxiety than those who don't exercise.
+There are a few reasons behind this:
+Stress hormones: Exercise lowers your body's stress hormones — such as cortisol — in the long run. It also helps release endorphins, which are chemicals that improve your mood and act as natural painkillers.
+Sleep: Exercise can also improve your sleep quality, which can be negatively affected by stress and anxiety.
+Confidence: When you exercise regularly, you may feel more competent and confident in your body, which in turn promotes mental wellbeing.
+Try to find an exercise routine or activity you enjoy, such as walking, dancing, rock climbing or yoga.
+Activities — such as walking or jogging — that involve repetitive movements of large muscle groups can be particularly stress relieving.
+2. Consider Supplements
+Several supplements promote stress and anxiety reduction. Here is a brief overview of some of the most common ones:
+Lemon balm: Lemon balm is a member of the mint family that has been studied for its anti-anxiety effects.
+Omega-3 fatty acids: One study showed that medical students who received omega-3 supplements experienced a 20% reduction in anxiety symptoms.
+Ashwagandha: Ashwagandha is an herb used in Ayurvedic medicine to treat stress and anxiety. Several studies suggest that it's effective.
+Green tea: Green tea contains many polyphenol antioxidants which provide health benefits. It may lower stress and anxiety by increasing serotonin levels.
+Valerian: Valerian root is a popular sleep aid due to its tranquilizing effect. It contains valerenic acid, which alters gamma-aminobutyric acid (GABA) receptors to lower anxiety.
+Kava kava: Kava kava is a psychoactive member of the pepper family. Long used as a sedative in the South Pacific, it is increasingly used in Europe and the US to treat mild stress and anxiety
+Some supplements can interact with medications or have side effects, so you may want to consult with a doctor if you have a medical condition."
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.485"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.732" />
+        app:layout_constraintVertical_bias="0.858" />
 </androidx.constraintlayout.widget.ConstraintLayout>

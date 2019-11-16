@@ -11,12 +11,13 @@ import android.widget.TextView;
 
 public class ListItemDetail extends Activity {
 
-    String mood;
+    String mood = "Sad";
     String[] myKeys;
 
-    ListItemDetail(String m) {
-        mood = m;
-    }
+    //ListItemDetail() {}
+    //ListItemDetail(String m) {
+        //mood = m;
+    //}
 
 @Override
 public void onCreate(Bundle savedInstanceState) {
