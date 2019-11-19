@@ -9,13 +9,13 @@ import android.content.Intent;
 
 public class SliderActivity extends AppCompatActivity {
 
-    //String mood;
+    String mood;
 
     //SliderActivity() {}
 
-    //SliderActivity(String m) {
-        //mood = m;
-    //}
+    SliderActivity(String m) {
+        mood = m;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +30,8 @@ public class SliderActivity extends AppCompatActivity {
         toMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(SliderActivity.this, MainMenuActivity.class));
+                MainMenuActivity mainmenuactivity = new MainMenuActivity(mood);
+                startActivity(new Intent(SliderActivity.this, mainmenuactivity));
             }
         });
     }

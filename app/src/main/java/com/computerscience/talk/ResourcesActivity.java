@@ -16,8 +16,7 @@ import java.util.ArrayList;
 
 public class ResourcesActivity extends Activity implements OnItemClickListener {
 
-    /*String mood;
-    ResourcesActivity() {}
+    String mood;
     ResourcesActivity(String m) {
         mood = m;
     }  //Keeps track of which mood the user is in */
@@ -37,13 +36,40 @@ public class ResourcesActivity extends Activity implements OnItemClickListener {
         inten.setClass(ResourcesActivity.this, ListItemDetail.class);
         inten.putExtra("position", position);
         inten.putExtra("id", id);
-        if(id == 0) {
+        if(mood.equals("sad") && id == 0) {
             startActivity(new Intent(ResourcesActivity.this, Article1.class));
         }
-        else if (id == 1) {
+        else if (mood.equals("sad") && id == 1) {
             startActivity(new Intent(ResourcesActivity.this, Fitness1.class));
         }
-        else if (id == 2) {
+        else if (mood.equals("sad") && id == 2) {
+            startActivity(new Intent(ResourcesActivity.this, VideoActivity.class));
+        }
+        else if (mood.equals("anxious") && id == 0) {
+            startActivity(new Intent(ResourcesActivity.this, Article2.class));
+        }
+        else if (mood.equals("anxious") && id == 1) {
+            startActivity(new Intent(ResourcesActivity.this, Fitness1.class));
+        }
+        else if (mood.equals("anxious") && id == 2) {
+            startActivity(new Intent(ResourcesActivity.this, VideoActivity.class));
+        }
+        else if (mood.equals("angry") && id == 0) {
+            startActivity(new Intent(ResourcesActivity.this, Article3.class));
+        }
+        else if (mood.equals("angry") && id == 1) {
+            startActivity(new Intent(ResourcesActivity.this, Fitness2.class));
+        }
+        else if (mood.equals("angry") && id == 2) {
+            startActivity(new Intent(ResourcesActivity.this, VideoActivity.class));
+        }
+        else if (mood.equals("happy") && id == 0) {
+            startActivity(new Intent(ResourcesActivity.this, Article4.class));
+        }
+        else if (mood.equals("happy") && id == 1) {
+            startActivity(new Intent(ResourcesActivity.this, Fitness2.class));
+        }
+        else {
             startActivity(new Intent(ResourcesActivity.this, VideoActivity.class));
         }
 }

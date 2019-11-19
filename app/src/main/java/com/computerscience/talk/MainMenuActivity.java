@@ -9,11 +9,11 @@ import android.content.Intent;
 
 public class MainMenuActivity extends AppCompatActivity {
 
-    //String mood;
+    String mood;
     //MainMenuActivity() {}
-    //MainMenuActivity(String m) {
-        //mood = m;
-    //}
+    MainMenuActivity(String m) {
+        mood = m;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,7 +40,8 @@ public class MainMenuActivity extends AppCompatActivity {
         toResources.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainMenuActivity.this, ResourcesActivity.class));
+                ResourcesActivity resourcesactivity = new ResourcesActivity(mood);
+                startActivity(new Intent(MainMenuActivity.this, resourcesactivity));
             }
         });
     }

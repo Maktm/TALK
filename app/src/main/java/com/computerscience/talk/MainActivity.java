@@ -28,8 +28,9 @@ public class MainActivity extends AppCompatActivity {
         sadButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SliderActivity.class));
                  String mood = "Sad";
+                 SliderActivity slideractivity = new SliderActivity(mood);
+                 startActivity(new Intent(MainActivity.this, slideractivity));
             }
         });
     }
@@ -39,8 +40,9 @@ public class MainActivity extends AppCompatActivity {
         anxiousButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SliderActivity.class));
                 String mood = "Anxious";
+                SliderActivity slideractivity = new SliderActivity(mood);
+                startActivity(new Intent(MainActivity.this, slideractivity));
             }
         });
     }
@@ -50,8 +52,9 @@ public class MainActivity extends AppCompatActivity {
         angryButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SliderActivity.class));
                 String mood = "Angry";
+                SliderActivity slideractivity = new SliderActivity(mood);
+                startActivity(new Intent(MainActivity.this, slideractivity));
             }
         });
     }
@@ -61,8 +64,9 @@ public class MainActivity extends AppCompatActivity {
         happyButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                startActivity(new Intent(MainActivity.this, SliderActivity.class));
                 String mood = "Happy";
+                SliderActivity slideractivity = new SliderActivity(mood);
+                startActivity(new Intent(MainActivity.this, slideractivity));
             }
         });
     }

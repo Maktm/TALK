@@ -1,29 +1,25 @@
 <resources>
     <string-array name="sectionsSad">
-        <item >Article 1</item>
-        <item >Fitness Exercise 2</item>
-        <item >Article 2</item>
-        <item >Helpful Video</item>
+        <item >5 Ways to Overcome Sadness</item>
+        <item >Yoga Exercise</item>
+        <item >Cats vs Invisible Wall</item>
     </string-array>
 
     <string-array name = "sectionsAnxious">
-        <item >Article 2</item>
-        <item >Article 4</item>
-        <item >Fitness Exercise 1</item>
-        <item >Helpful Video</item>
+        <item >16 Simple Ways to Reduce Stress and Anxiety</item>
+        <item >Situp Exercise</item>
+        <item >Cats vs Invisible Wall</item>
     </string-array>
 
     <string-array name = "sectionsAngry">
-        <item >Article 4</item>
-        <item >Fitness Exercise 1</item>
-        <item >Helpful Video</item>
-        <item >Article 3</item>
+        <item >Dos and Donts of Dealing with Anger</item>
+        <item >Yoga Exercise</item>
+        <item >Cats vs Invisible Wall</item>
     </string-array>
 
     <string-array name = "sectionsHappy">
-        <item >Fitness Exercise 2</item>
-        <item >Helpful Video</item>
-        <item >Article 3</item>
-        <item >Article 1</item>
+        <item >This Dog Learning to 'Speak'</item>
+        <item >Situp Exercise</item>
+        <item >Cats vs Invisible Wall</item>
     </string-array>
 </resources>
