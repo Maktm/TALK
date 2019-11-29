@@ -8,4 +8,9 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="FloatingActionBtnTheme">
+        <item name="android:backgroundTint">@color/colorBottomNavActive</item>
+        <item name="android:tint">@android:color/white</item>
+    </style>
+
 </resources>
