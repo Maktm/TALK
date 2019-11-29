@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#15AB68</color>
+    <color name="colorPrimary">#008577</color>
     <color name="colorPrimaryDark">#00574B</color>
-    <color name="colorAccent">#82E1BB</color>
+    <color name="colorAccent">#D81B60</color>
+
+    <!-- Core colors -->
+    <color name="colorAppPrimary">#16202A</color>
+    <color name="colorAppSecondary">#16202A</color>
+
+    <!-- Intro slides colors -->
+    <color name="colorIntroSlideHeader">#FFFFFF</color>
+    <color name="colorIntroSlideBody">#FFFFFF</color>
+    <color name="colorIntroSlide1Background">#343434</color>
+    <color name="colorIntroSlide2Background">#3B6DB2</color>
+    <color name="colorIntroSlide3Background">#CC8A2D</color>
+    <color name="colorIntroSlide4Background">#1C4E3B</color>
+    <color name="colorIntroSlide5Background">#A82222</color>
+    <color name="colorIntroSlide6Background">#318D9A</color>
+
+    <!-- BottomNavigationView colors -->
+    <color name="colorBottomNavActive">#20A0EE</color>
+    <color name="colorBottomNavInactive">#45535D</color>
+    <color name="colorBottomNavBackground">#16202A</color>
+    <color name="colorBottomNavSeparator">#45535D</color>
 </resources>

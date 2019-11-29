@@ -1,9 +1,23 @@
 <resources>
-    <string name="app_name">TALK</string>
-    <string name="terms_of_use">Please read the &lt;a href="http://www.wedonthavearealdocument.com/">terms and conditions&lt;/a> before continuing to use the app</string>
-    <string name="location_and_apps_info">We use your current location and app activity to track your habits</string>
-    <string name="resources_info">Get articles, videos, and fitness routine recommendations to help improve your mood</string>
-    <string name="mood_graph_info">Track your daily moods over a period of time to see how you\'re progressing</string>
-    <string name="journal_info">Use your journal to keep track of your state of mind and reflect on past ideas</string>
-    <string name="talk_info">TALK is an app for tracking your moods and finding ways to improve it over time</string>
+    <string name="app_name">Talk</string>
+
+    <!-- Intro slides -->
+    <string name="intro_slide1_header">Welcome to Talk</string>
+    <string name="intro_slide1_body">Talk is a personal tool that helps you keep track of your mental health</string>
+    <string name="intro_slide2_header">Journal</string>
+    <string name="intro_slide2_body">Use the journal to write more detailed information about how you\'re feeling</string>
+    <string name="intro_slide3_header">Mood Graph</string>
+    <string name="intro_slide3_body">Use the graph to view your mood history</string>
+    <string name="intro_slide4_header">Resources</string>
+    <string name="intro_slide4_body">Get suggested articles and videos that can help you improve your mood</string>
+    <string name="intro_slide5_header">Location and Apps</string>
+    <string name="intro_slide5_body">Track your movement and app usage to better understand your moods</string>
+    <string name="intro_slide6_header">Terms and Conditions</string>
+    <string name="intro_slide6_body">Please read the terms and conditions before you use the app</string>
+
+    <!-- BottomNavigationView strings -->
+    <string name="menu_journal">Journal</string>
+    <string name="menu_resources">Resources</string>
+    <string name="menu_statistics">Statistics</string>
+    <string name="menu_settings">Settings</string>
 </resources>

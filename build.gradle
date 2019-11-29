@@ -18,6 +18,8 @@ allprojects {
     repositories {
         google()
         jcenter()
+
+        // AppIntro dependency
         maven { url 'https://jitpack.io' }
     }
 }
