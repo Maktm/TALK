@@ -12,30 +12,40 @@ import com.texastech.talk.MainActivity;
 import com.texastech.talk.R;
 
 public class AlarmReceiver extends BroadcastReceiver {
-    public static String CHANNEL_ID = "AlarmReceiver.DailyNotification";
-    public static String ASK_MOOD_INTENT_PARAM = "SHOW_USER_MOOD_DIALOG";
-    private static int mNotificationId = 0;
+    /**
+     * Listens for intents being broadcasted from the system's alarm
+     * saying that a specified time has been reached. When this time has
+     * been reached, the app will create a notification for the user
+     * asking them to enter their current mood at the time.
+     */
+    private int mNotificationId = 0x1;
+    NotificationCompat.Builder mBuilder = null;
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        Intent notificationIntent = new Intent(context, MainActivity.class);
-        notificationIntent.putExtra(ASK_MOOD_INTENT_PARAM, true);
-        notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-        PendingIntent pendingIntent =
-                PendingIntent.getActivity(
-                        context, 0, notificationIntent, PendingIntent.FLAG_UPDATE_CURRENT
-                );
+        /**
+         * Called when the broadcast is received from the alarm. Creates
+         * the notification for the user to enter their mood.
+         */
+        if (mBuilder == null) {
+            Intent notifyIntent = new Intent(context, MainActivity.class);
+            notifyIntent.putExtra(MainActivity.QUERY_MOOD_PARAMETER, true);
+            notifyIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
 
-        NotificationCompat.Builder builder = new
-                NotificationCompat.Builder(context, CHANNEL_ID)
-                .setSmallIcon(R.drawable.ic_intro_slide1)
-                .setContentTitle("How are you feeling?")
-                .setContentText("Hit the notification to tell me how you're feeling")
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT)
-                .setContentIntent(pendingIntent)
-                .setAutoCancel(true);
+            PendingIntent pendingIntent = PendingIntent.getActivity(
+                    context, 0, notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+            mBuilder = new NotificationCompat.Builder(
+                    context, MainActivity.NOTIFICATION_CHANNEL_ID);
+            mBuilder.setSmallIcon(R.drawable.ic_launcher_foreground);
+            mBuilder.setContentTitle("How are you feeling?");
+            mBuilder.setContentText("Hit the notification to tell me how you're feeling");
+            mBuilder.setPriority(NotificationCompat.PRIORITY_DEFAULT);
+            mBuilder.setContentIntent(pendingIntent);
+            mBuilder.setAutoCancel(true);
+        }
 
         NotificationManagerCompat notificationMgr = NotificationManagerCompat.from(context);
-        notificationMgr.notify(mNotificationId++, builder.build());
+        notificationMgr.notify(mNotificationId++, mBuilder.build());
     }
 }

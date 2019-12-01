@@ -5,29 +5,26 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
-import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import com.github.paolorotolo.appintro.AppIntro2;
 import com.texastech.talk.MainActivity;
 import com.texastech.talk.R;
-import com.texastech.talk.notification.AlarmReceiver;
 
 public class IntroActivity extends AppIntro2 {
-    public static String LAUNCHED_APP_BEFORE = "IntroActivityInitialLaunch";
-
     /**
-     * The IntroActivity is launched the first time the app is
-     * installed and the user is introduced to everything. It
-     * goes through a series of slides and requests for permission
-     * before presenting the user with the usual default activity.
+     * Activity launched the first time the app is installed in order to
+     * introduce the user to the application purpose/features. This activity
+     * contains a series of slides that are implemented in layouts and asks
+     * for permissions required to use certain features of the app.
      */
+    public static final String LAUNCHED_APP_BEFORE = "IntroActivity.LaunchedAppBefore";
+
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        // Add slides
         addSlide(SlideHostFragment.newInstance(R.layout.layout_intro_slide1));
         addSlide(SlideHostFragment.newInstance(R.layout.layout_intro_slide2));
         addSlide(SlideHostFragment.newInstance(R.layout.layout_intro_slide3));
@@ -35,29 +32,39 @@ public class IntroActivity extends AppIntro2 {
         addSlide(SlideHostFragment.newInstance(R.layout.layout_intro_slide5));
         addSlide(SlideHostFragment.newInstance(R.layout.layout_intro_slide6));
 
-        // Configure AppIntro
-        showStatusBar(false);
         showSkipButton(false);
+        showStatusBar(false);
 
-        // Permissions
+        final int LOCATION_PERMISSION_SLIDE_INDEX = 5;
         askForPermissions(new String[] {
                 Manifest.permission.ACCESS_FINE_LOCATION
-        }, 5);
+        }, LOCATION_PERMISSION_SLIDE_INDEX);
     }
 
     @Override
     public void onDonePressed(Fragment currentFragment) {
+        /**
+         * Executed when the user clicks the button on the last slide
+         * acknowledging that they have read the terms of use and
+         * would like to exit the app introduction.
+         */
         super.onDonePressed(currentFragment);
 
-        // Save the fact that the user has finished the intro
-        SharedPreferences.Editor sharedPrefsEditor =
-                PreferenceManager.getDefaultSharedPreferences(this).edit();
-        sharedPrefsEditor.putBoolean(LAUNCHED_APP_BEFORE, true);
-        sharedPrefsEditor.apply();
+        setLaunchedAppBefore();
 
         Intent intent = new Intent(this, MainActivity.class);
-        intent.putExtra(AlarmReceiver.ASK_MOOD_INTENT_PARAM, true);
+        intent.putExtra(MainActivity.QUERY_MOOD_PARAMETER, true);
         finish();
         startActivity(intent);
+    }
+
+    void setLaunchedAppBefore() {
+        /**
+         * Marks the user as having been introduced to the app. Therefore,
+         * they will not have to go through the introduction in the future.
+         */
+        SharedPreferences.Editor editor = PreferenceManager.getDefaultSharedPreferences(this).edit();
+        editor.putBoolean(LAUNCHED_APP_BEFORE, true);
+        editor.apply();
     }
 }

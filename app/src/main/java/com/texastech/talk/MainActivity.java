@@ -41,6 +41,8 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
      * into the UI for this activity using the Navigation component or
      * AlertDialogs and other Android components for requesting for input.
      */
+    public static final String QUERY_MOOD_PARAMETER = "MainActivity.QueryMood";
+    public static final String NOTIFICATION_CHANNEL_ID = "MainActivity.NotificationChan";
 
     class MoodDialogListener implements DialogInterface.OnClickListener {
         @Override
@@ -105,7 +107,7 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
         super.onResume();
 
         boolean resumeFromNotification = getIntent().getBooleanExtra(
-                AlarmReceiver.ASK_MOOD_INTENT_PARAM, false);
+                QUERY_MOOD_PARAMETER, false);
         if (resumeFromNotification) {
             promptForCurrentMood();
         } else {
@@ -157,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             int importance = NotificationManager.IMPORTANCE_DEFAULT;
             NotificationChannel channel = new NotificationChannel(
-                    AlarmReceiver.CHANNEL_ID, "DailyNotification", importance);
+                    NOTIFICATION_CHANNEL_ID, "DailyNotification", importance);
             channel.setDescription("Talk.Notifications");
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
