@@ -6,6 +6,7 @@
         <item name="colorPrimary">@color/colorAppPrimary</item>
         <item name="colorPrimaryDark">@color/colorAppSecondary</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="alertDialogStyle">@style/Theme.MaterialComponents.Dialog.Alert</item>
     </style>
 
     <style name="FloatingActionBtnTheme">
@@ -13,4 +14,9 @@
         <item name="android:tint">@android:color/white</item>
     </style>
 
+    <style name="DarkAlertDialog" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="colorAccent">@color/colorAlertDialogButton</item>
+        <item name="android:textColorPrimary">@color/colorAlertDialogText</item>
+        <item name="android:background">@color/colorAlertDialogBackground</item>
+    </style>
 </resources>

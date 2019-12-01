@@ -1,6 +1,7 @@
 package com.texastech.talk.intro;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -9,7 +10,9 @@ import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
 
 import com.github.paolorotolo.appintro.AppIntro2;
+import com.texastech.talk.MainActivity;
 import com.texastech.talk.R;
+import com.texastech.talk.notification.AlarmReceiver;
 
 public class IntroActivity extends AppIntro2 {
     public static String LAUNCHED_APP_BEFORE = "IntroActivityInitialLaunch";
@@ -52,6 +55,9 @@ public class IntroActivity extends AppIntro2 {
         sharedPrefsEditor.putBoolean(LAUNCHED_APP_BEFORE, true);
         sharedPrefsEditor.apply();
 
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra(AlarmReceiver.ASK_MOOD_INTENT_PARAM, true);
         finish();
+        startActivity(intent);
     }
 }

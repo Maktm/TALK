@@ -19,7 +19,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".intro.IntroActivity"/>
-        <receiver android:name=".AlarmReceiver"/>
+        <receiver android:name=".notification.AlarmReceiver"/>
     </application>
 
 </manifest>
