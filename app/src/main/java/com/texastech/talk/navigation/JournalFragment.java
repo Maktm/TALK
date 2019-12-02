@@ -16,8 +16,6 @@ import android.view.ViewGroup;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.texastech.talk.R;
 
-import.java.swing.*;
-
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,19 +80,6 @@ public class JournalFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO: Add code for creating a journal entry
-            public class TextArea{
-                TextArea(){
-                JFrame f = new JFrame();
-                JTextArea area = new JTextArea("How are you feeling?");
-                area.setBounds(10,30,200,200);
-                f.add(area);
-                f.setSize(300,300);
-                f.setLayout(null);
-                f.setVisible(true);
-                }
-            public static void main(String args[]){
-            new TextArea();
-            }}
             }
         });
     }
