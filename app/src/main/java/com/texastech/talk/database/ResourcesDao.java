@@ -8,23 +8,22 @@ import androidx.room.Query;
 import java.util.List;
 
 @Dao
-public interface
-MoodDao {
+public interface ResourcesDao {
     /**
      * A Data Access Object (Dao) is the bridge between the
      * user attempting to interact with the lower-level
      * database and the raw database. The access object
      * allows you to perform operations, retrieve data etc.
      */
-    @Query("SELECT * FROM mood")
-    List<Mood> getAll();
+    @Query("SELECT * FROM resources")
+    List<Resources> getAll();
 
     @Insert
-    void insert(Mood mood);
+    void insert(Resources resources);
 
     @Insert
-    void insertAll(Mood... moods);
+    void insertAll(Resources ... resources);
 
     @Delete
-    void delete(Mood mood);
+    void delete(Resources resources);
 }

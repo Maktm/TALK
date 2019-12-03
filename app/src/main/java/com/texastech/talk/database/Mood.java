@@ -35,8 +35,13 @@ public class Mood {
     @ColumnInfo(name = "value")
     public int value;
 
-    public Mood(int date, int value) {
+    @ColumnInfo (name="severity_level")
+    public int severityLevel;
+
+
+    public Mood(int date, int value, int severityLevel) {
         this.date = date;
         this.value = value;
+        this.severityLevel= severityLevel;
     }
 }
