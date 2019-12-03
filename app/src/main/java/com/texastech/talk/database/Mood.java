@@ -1,7 +1,6 @@
 package com.texastech.talk.database;
 
-import
-        androidx.room.ColumnInfo;
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
