@@ -13,7 +13,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
+import android.util.Log;
 import android.view.LayoutInflater;
+import android.widget.SeekBar;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -24,6 +26,9 @@ import androidx.navigation.ui.NavigationUI;
 import androidx.preference.PreferenceManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.texastech.talk.database.AppDatabase;
+import com.texastech.talk.database.Mood;
+import com.texastech.talk.database.MoodDao;
 import com.texastech.talk.intro.IntroActivity;
 import com.texastech.talk.navigation.JournalFragment;
 import com.texastech.talk.navigation.ResourcesFragment;
@@ -31,10 +36,18 @@ import com.texastech.talk.navigation.SettingsFragment;
 import com.texastech.talk.navigation.StatisticsFragment;
 import com.texastech.talk.notification.AlarmReceiver;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity implements JournalFragment.OnFragmentInteractionListener,
         ResourcesFragment.OnFragmentInteractionListener,
         StatisticsFragment.OnFragmentInteractionListener,
         SettingsFragment.OnFragmentInteractionListener {
+
+    // Temporarily used to store the current mood
+    // before saving it to the database.
+    int mCurrentMood = 0;
+    int mCurrentMoodLevel = 0;
+
     /**
      * This is the core, single activity that runs throughout the lifetime of
      * the application. The rest of the UI consists of fragments embedded
@@ -53,15 +66,39 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
              */
             dialog.dismiss();
 
-            AlertDialog.Builder builder = new AlertDialog.Builder(
-                    MainActivity.this, R.style.DarkAlertDialog);
-            LayoutInflater inflater = MainActivity.this.getLayoutInflater();
+//            AlertDialog.Builder builder = new AlertDialog.Builder(
+//                    MainActivity.this, R.style.DarkAlertDialog);
+//            LayoutInflater inflater = MainActivity.this.getLayoutInflater();
+//
+//            // TODO: Find a way to get the level for the SeekBar
+//            builder.setTitle("How intense is this feeling?");
+//            builder.setView(inflater.inflate(R.layout.dialog_mood_level, null));
+//            builder.setPositiveButton("Save", new MoodLevelListener());
+//            builder.setCancelable(false);
+//
+//            // TODO: Move this!
+//            SeekBar seekBar = findViewById(R.id.seekBar);
+//            seekBar.setOnSeekBarChangeListener(new MoodLevelOptionListener());
+//
+//            builder.show();
+            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.DarkAlertDialog);
+            SeekBar seekBar = new SeekBar(MainActivity.this);
+            seekBar.setMax(5);
+            seekBar.setOnSeekBarChangeListener(new MoodLevelOptionListener());
 
             builder.setTitle("How intense is this feeling?");
-            builder.setView(inflater.inflate(R.layout.dialog_mood_level, null));
-            builder.setPositiveButton("Save", new MoodLevelListener());
+            builder.setView(seekBar);
             builder.setCancelable(false);
+            builder.setPositiveButton("Save", new MoodLevelListener());
+
             builder.show();
+        }
+    }
+
+    class MoodDialogOptionListener implements DialogInterface.OnClickListener {
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            mCurrentMood = which + 1;
         }
     }
 
@@ -71,7 +108,42 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
             /**
              * Gets the level the user enters. TODO: Improve documentation.
              */
+            Log.d("Mood.Type", "Writing mood type: " + mCurrentMood);
+            Log.d("Mood.Level", "Writing mood level: " + mCurrentMoodLevel);
             Toast.makeText(MainActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
+
+            //
+            // TODO: Save to local database
+            //
+            Mood curretMood = new Mood(mCurrentMood, mCurrentMoodLevel);
+
+            AppDatabase database = AppDatabase.getDatabase(getApplicationContext());
+            MoodDao moodDao = database.moodDao();
+            moodDao.insert(curretMood);
+
+            // Log all the data in the database to make sure it's correct
+            List<Mood> allMoods = moodDao.getAll();
+            Log.d("Database", String.format("The database contains %d entries", allMoods.size()));
+            for (Mood mood : allMoods) {
+                Log.d("Database", String.format("Row: Date=%d, Mood=%d", mood.date, mood.value));
+            }
+        }
+    }
+
+    class MoodLevelOptionListener implements SeekBar.OnSeekBarChangeListener {
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            mCurrentMoodLevel = progress + 1;
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
         }
     }
 
@@ -144,7 +216,7 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.DarkAlertDialog);
         builder.setTitle("How are you feeling?");
-        builder.setSingleChoiceItems(items, 0, null);
+        builder.setSingleChoiceItems(items, 0, new MoodDialogOptionListener());
         builder.setPositiveButton("Next", new MoodDialogListener());
         builder.setCancelable(false);
         builder.show();

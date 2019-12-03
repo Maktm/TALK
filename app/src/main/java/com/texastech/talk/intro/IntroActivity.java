@@ -29,16 +29,16 @@ public class IntroActivity extends AppIntro2 {
         addSlide(SlideHostFragment.newInstance(R.layout.layout_intro_slide2));
         addSlide(SlideHostFragment.newInstance(R.layout.layout_intro_slide3));
         addSlide(SlideHostFragment.newInstance(R.layout.layout_intro_slide4));
-        addSlide(SlideHostFragment.newInstance(R.layout.layout_intro_slide5));
+//        addSlide(SlideHostFragment.newInstance(R.layout.layout_intro_slide5));
         addSlide(SlideHostFragment.newInstance(R.layout.layout_intro_slide6));
 
         showSkipButton(false);
         showStatusBar(false);
 
-        final int LOCATION_PERMISSION_SLIDE_INDEX = 5;
+/*        final int LOCATION_PERMISSION_SLIDE_INDEX = 5;
         askForPermissions(new String[] {
                 Manifest.permission.ACCESS_FINE_LOCATION
-        }, LOCATION_PERMISSION_SLIDE_INDEX);
+        }, LOCATION_PERMISSION_SLIDE_INDEX);*/
     }
 
     @Override
