@@ -4,13 +4,28 @@ import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.utils.EntryXComparator;
 import com.texastech.talk.R;
+import com.texastech.talk.database.AppDatabase;
+import com.texastech.talk.database.Mood;
+import com.texastech.talk.database.MoodDao;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 
 /**
@@ -53,6 +68,32 @@ public class StatisticsFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        // Draw the graph
+        AppDatabase database = AppDatabase.getDatabase(view.getContext());
+        MoodDao moodDao = database.moodDao();
+        List<Mood> allMoods = moodDao.getAll();
+
+        List<Entry> entries = new ArrayList<>();
+        for (Mood mood : allMoods) {
+            Log.d("Statistics", String.format("Found entry: %d %d", mood.date, mood.value));
+            entries.add(new Entry(mood.date, mood.value));
+        }
+        Collections.sort(entries, new EntryXComparator());
+
+        LineDataSet dataSet = new LineDataSet(entries, "Mood History");
+        dataSet.setColor(R.color.colorBottomNavActive);
+        dataSet.setValueTextColor(R.color.colorBottomNavActive);
+
+        LineChart chart = view.findViewById(R.id.mood_chart);
+        LineData lineData = new LineData(dataSet);
+        chart.setData(lineData);
+        chart.invalidate();
     }
 
     @Override
