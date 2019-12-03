@@ -14,7 +14,6 @@ import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -66,24 +65,9 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
              */
             dialog.dismiss();
 
-//            AlertDialog.Builder builder = new AlertDialog.Builder(
-//                    MainActivity.this, R.style.DarkAlertDialog);
-//            LayoutInflater inflater = MainActivity.this.getLayoutInflater();
-//
-//            // TODO: Find a way to get the level for the SeekBar
-//            builder.setTitle("How intense is this feeling?");
-//            builder.setView(inflater.inflate(R.layout.dialog_mood_level, null));
-//            builder.setPositiveButton("Save", new MoodLevelListener());
-//            builder.setCancelable(false);
-//
-//            // TODO: Move this!
-//            SeekBar seekBar = findViewById(R.id.seekBar);
-//            seekBar.setOnSeekBarChangeListener(new MoodLevelOptionListener());
-//
-//            builder.show();
             AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.DarkAlertDialog);
             SeekBar seekBar = new SeekBar(MainActivity.this);
-            seekBar.setMax(5);
+            seekBar.setMax(4);
             seekBar.setOnSeekBarChangeListener(new MoodLevelOptionListener());
 
             builder.setTitle("How intense is this feeling?");
@@ -106,27 +90,12 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
         @Override
         public void onClick(DialogInterface dialog, int which) {
             /**
-             * Gets the level the user enters. TODO: Improve documentation.
+             * Called when the user enters the severity of their mood. This should
+             * save the user's current mood to the database then show the message
+             * saying that the information was saved.
              */
-            Log.d("Mood.Type", "Writing mood type: " + mCurrentMood);
-            Log.d("Mood.Level", "Writing mood level: " + mCurrentMoodLevel);
+            saveCurrentMood();
             Toast.makeText(MainActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
-
-            //
-            // TODO: Save to local database
-            //
-            Mood curretMood = new Mood(mCurrentMood, mCurrentMoodLevel);
-
-            AppDatabase database = AppDatabase.getDatabase(getApplicationContext());
-            MoodDao moodDao = database.moodDao();
-            moodDao.insert(curretMood);
-
-            // Log all the data in the database to make sure it's correct
-            List<Mood> allMoods = moodDao.getAll();
-            Log.d("Database", String.format("The database contains %d entries", allMoods.size()));
-            for (Mood mood : allMoods) {
-                Log.d("Database", String.format("Row: Date=%d, Mood=%d", mood.date, mood.value));
-            }
         }
     }
 
@@ -137,14 +106,10 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
         }
 
         @Override
-        public void onStartTrackingTouch(SeekBar seekBar) {
-
-        }
+        public void onStartTrackingTouch(SeekBar seekBar) { }
 
         @Override
-        public void onStopTrackingTouch(SeekBar seekBar) {
-
-        }
+        public void onStopTrackingTouch(SeekBar seekBar) { }
     }
 
     @Override
@@ -249,6 +214,25 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
         BottomNavigationView bottomNav = findViewById(R.id.bottom_nav_view);
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupWithNavController(bottomNav, navController);
+    }
+
+    void saveCurrentMood() {
+        /**
+         * Saves the user's current mood to the database. It should only be called
+         * after the user just got done entering in their severity level.
+         */
+        Mood curretMood = new Mood(mCurrentMood, mCurrentMoodLevel);
+
+        AppDatabase database = AppDatabase.getDatabase(getApplicationContext());
+        MoodDao moodDao = database.moodDao();
+        moodDao.insert(curretMood);
+
+        // Log all the data in the database to make sure it's correct
+        List<Mood> allMoods = moodDao.getAll();
+        Log.d("Database", String.format("The database contains %d entries", allMoods.size()));
+        for (Mood mood : allMoods) {
+            Log.d("Database", String.format("Row: Date=%d, Mood=%d", mood.date, mood.value));
+        }
     }
 
     @Override
