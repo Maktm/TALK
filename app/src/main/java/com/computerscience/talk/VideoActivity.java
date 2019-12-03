@@ -20,7 +20,7 @@ public class VideoActivity extends AppCompatActivity {
         vid = (VideoView)findViewById(R.id.videoView);
         m = new MediaController(this);
 
-        String path = "/Users/Owner/TALK/app/src/main/res/raw/Cats.mp4";
+        String path = "android.resource://com.GitHub.TALK/"+R.raw.cats;
 
         Uri u = Uri.parse(path);
         vid.setVideoURI(u);

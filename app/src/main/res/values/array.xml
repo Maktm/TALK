@@ -17,9 +17,4 @@
         <item >Cats vs Invisible Wall</item>
     </string-array>
 
-    <string-array name = "sectionsHappy">
-        <item >This Dog Learning to 'Speak'</item>
-        <item >Situp Exercise</item>
-        <item >Cats vs Invisible Wall</item>
-    </string-array>
 </resources>

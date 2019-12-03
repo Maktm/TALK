@@ -29,8 +29,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                  String mood = "Sad";
-                 SliderActivity slideractivity = new SliderActivity(mood);
-                 startActivity(new Intent(MainActivity.this, slideractivity));
+                 SliderActivity slideractivity = new SliderActivity();
+                 startActivity(new Intent(MainActivity.this, SliderActivity.class));
             }
         });
     }
@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String mood = "Anxious";
-                SliderActivity slideractivity = new SliderActivity(mood);
-                startActivity(new Intent(MainActivity.this, slideractivity));
+                SliderActivity slideractivity = new SliderActivity();
+                startActivity(new Intent(MainActivity.this, SliderActivity.class));
             }
         });
     }
@@ -53,8 +53,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String mood = "Angry";
-                SliderActivity slideractivity = new SliderActivity(mood);
-                startActivity(new Intent(MainActivity.this, slideractivity));
+                SliderActivity slideractivity = new SliderActivity();
+                startActivity(new Intent(MainActivity.this, SliderActivity.class));
             }
         });
     }
@@ -65,8 +65,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 String mood = "Happy";
-                SliderActivity slideractivity = new SliderActivity(mood);
-                startActivity(new Intent(MainActivity.this, slideractivity));
+                SliderActivity slideractivity = new SliderActivity();
+                startActivity(new Intent(MainActivity.this, SliderActivity.class));
             }
         });
     }

@@ -11,12 +11,6 @@ public class SliderActivity extends AppCompatActivity {
 
     String mood;
 
-    //SliderActivity() {}
-
-    SliderActivity(String m) {
-        mood = m;
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -30,8 +24,8 @@ public class SliderActivity extends AppCompatActivity {
         toMainMenu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                MainMenuActivity mainmenuactivity = new MainMenuActivity(mood);
-                startActivity(new Intent(SliderActivity.this, mainmenuactivity));
+                MainMenuActivity mainmenuactivity = new MainMenuActivity();
+                startActivity(new Intent(SliderActivity.this, MainMenuActivity.class));
             }
         });
     }

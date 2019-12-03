@@ -33,11 +33,8 @@ public void onCreate(Bundle savedInstanceState) {
     else if (mood.equals("Anxious")) {
         myKeys = getResources().getStringArray(R.array.sectionsAnxious);
     }
-    else if (mood.equals("Angry")) {
-        myKeys = getResources().getStringArray(R.array.sectionsAngry);
-    }
     else {
-        myKeys = getResources().getStringArray(R.array.sectionsHappy);
+        myKeys = getResources().getStringArray(R.array.sectionsAngry);
     }
 
     TextView myTextView = (TextView) findViewById(R.id.my_textview);

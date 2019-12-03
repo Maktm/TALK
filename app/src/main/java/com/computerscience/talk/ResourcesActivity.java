@@ -15,11 +15,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 public class ResourcesActivity extends Activity implements OnItemClickListener {
-
-    String mood;
-    ResourcesActivity(String m) {
-        mood = m;
-    }  //Keeps track of which mood the user is in */
+    String mood = "Sad";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
