@@ -36,7 +36,7 @@ public class Mood {
     public int value;
 
     @ColumnInfo (name="severity_level")
-    private int severityLevel;
+    public int severityLevel;
 
 
     public Mood(int date, int value, int severityLevel) {
