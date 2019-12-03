@@ -35,6 +35,7 @@ import com.texastech.talk.navigation.SettingsFragment;
 import com.texastech.talk.navigation.StatisticsFragment;
 import com.texastech.talk.notification.AlarmReceiver;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements JournalFragment.OnFragmentInteractionListener,
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
     // before saving it to the database.
     int mCurrentMood = 0;
     int mCurrentMoodLevel = 0;
+    int mDate = 0;
 
     /**
      * This is the core, single activity that runs throughout the lifetime of
@@ -221,18 +223,37 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
          * Saves the user's current mood to the database. It should only be called
          * after the user just got done entering in their severity level.
          */
-        Mood curretMood = new Mood(mCurrentMood, mCurrentMoodLevel);
+        Mood curretMood = new Mood(mDate++, mCurrentMood, mCurrentMoodLevel);
 
         AppDatabase database = AppDatabase.getDatabase(getApplicationContext());
         MoodDao moodDao = database.moodDao();
-        moodDao.insert(curretMood);
+//        moodDao.insert(curretMood);
+
+        // Delete everything
+        List<Mood> currentAllMoods = moodDao.getAll();
+        for (Mood mood : currentAllMoods) {
+            moodDao.delete(mood);
+        }
+
+        // Add sample data
+        List<Mood> sampleMoods = new ArrayList<>();
+        sampleMoods.add(new Mood(1, 1, 1));
+        sampleMoods.add(new Mood(2, 2, 2));
+        sampleMoods.add(new Mood(3, 3, 3));
+        sampleMoods.add(new Mood(4, 4, 4));
+        sampleMoods.add(new Mood(5, 2, 2));
+        sampleMoods.add(new Mood(6, 4, 4));
+        sampleMoods.add(new Mood(7, 1, 1));
+        for (Mood mood : sampleMoods) {
+            moodDao.insert(mood);
+        }
 
         // Log all the data in the database to make sure it's correct
-        List<Mood> allMoods = moodDao.getAll();
-        Log.d("Database", String.format("The database contains %d entries", allMoods.size()));
-        for (Mood mood : allMoods) {
-            Log.d("Database", String.format("Row: Date=%d, Mood=%d", mood.date, mood.value));
-        }
+//        List<Mood> allMoods = moodDao.getAll();
+//        Log.d("Database", String.format("The database contains %d entries", allMoods.size()));
+//        for (Mood mood : allMoods) {
+//            Log.d("Database", String.format("Row: Date=%d, Mood=%d", mood.date, mood.value));
+//        }
     }
 
     @Override

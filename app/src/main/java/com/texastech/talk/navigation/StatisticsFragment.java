@@ -1,11 +1,13 @@
 package com.texastech.talk.navigation;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -14,9 +16,12 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.utils.EntryXComparator;
 import com.texastech.talk.R;
 import com.texastech.talk.database.AppDatabase;
@@ -86,11 +91,35 @@ public class StatisticsFragment extends Fragment {
         }
         Collections.sort(entries, new EntryXComparator());
 
+        // TODO: Color in the different moods differently
         LineDataSet dataSet = new LineDataSet(entries, "Mood History");
         dataSet.setColor(R.color.colorBottomNavActive);
         dataSet.setValueTextColor(R.color.colorBottomNavActive);
+        dataSet.setMode(LineDataSet.Mode.CUBIC_BEZIER);
+        dataSet.setDrawFilled(true);
+        dataSet.setLineWidth(4.0f);
+        dataSet.setHighlightLineWidth(4);
+        dataSet.setColor(ContextCompat.getColor(getContext(), R.color.colorBottomNavActive));
 
         LineChart chart = view.findViewById(R.id.mood_chart);
+        chart.getDescription().setEnabled(false);
+        chart.getAxisLeft().setTextColor(Color.WHITE);
+        chart.getXAxis().setTextColor(Color.WHITE);
+        chart.getXAxis().setAxisMinimum(1);
+        chart.getXAxis().setAxisMaximum(7);
+        chart.getLegend().setEnabled(false);
+        chart.getAxisLeft().setDrawGridLines(false);
+        chart.getAxisRight().setDrawGridLines(false);
+        XAxis xAxis = chart.getXAxis();
+        xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
+        xAxis.disableAxisLineDashedLine();
+
+        String[] weekdays = {"Sun", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+        xAxis.setValueFormatter(new IndexAxisValueFormatter(weekdays));
+
+        YAxis yAxisRight = chart.getAxisRight();
+        yAxisRight.setDrawLabels(false);
+
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
         chart.invalidate();
