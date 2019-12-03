@@ -46,6 +46,7 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
     // before saving it to the database.
     int mCurrentMood = 0;
     int mCurrentMoodLevel = 0;
+    int mSeverityLevel = 0;
 
     /**
      * This is the core, single activity that runs throughout the lifetime of
@@ -221,11 +222,11 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
          * Saves the user's current mood to the database. It should only be called
          * after the user just got done entering in their severity level.
          */
-        Mood curretMood = new Mood(mCurrentMood, mCurrentMoodLevel);
+        Mood currentMood = new Mood(mCurrentMood, mCurrentMoodLevel, mSeverityLevel);
 
         AppDatabase database = AppDatabase.getDatabase(getApplicationContext());
         MoodDao moodDao = database.moodDao();
-        moodDao.insert(curretMood);
+        moodDao.insert(currentMood);
 
         // Log all the data in the database to make sure it's correct
         List<Mood> allMoods = moodDao.getAll();
