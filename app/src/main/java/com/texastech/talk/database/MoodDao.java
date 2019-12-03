@@ -8,7 +8,8 @@ import androidx.room.Query;
 import java.util.List;
 
 @Dao
-public interface MoodDao {
+public interface
+MoodDao {
     /**
      * A Data Access Object (Dao) is the bridge between the
      * user attempting to interact with the lower-level
