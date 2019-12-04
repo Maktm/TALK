@@ -28,6 +28,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.texastech.talk.database.AppDatabase;
 import com.texastech.talk.database.Mood;
 import com.texastech.talk.database.MoodDao;
+import com.texastech.talk.database.Resources;
+import com.texastech.talk.database.ResourcesDao;
 import com.texastech.talk.intro.IntroActivity;
 import com.texastech.talk.navigation.JournalFragment;
 import com.texastech.talk.navigation.ResourcesFragment;
@@ -47,6 +49,11 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
     int mCurrentMood = 0;
     int mCurrentMoodLevel = 0;
     int mSeverityLevel = 0;
+    //Temporary values for creating resource database
+    String titles = "";
+    String contents = "";
+    String links = "";
+    String imgs = "";
 
     /**
      * This is the core, single activity that runs throughout the lifetime of
@@ -132,6 +139,7 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
 
         registerNotificationChannel();
         setupBottomNavigation();
+
     }
 
     @Override
@@ -227,6 +235,13 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
         AppDatabase database = AppDatabase.getDatabase(getApplicationContext());
         MoodDao moodDao = database.moodDao();
         moodDao.insert(currentMood);
+
+        /**
+         * Create the Resources database and insert the user's current mood
+         */
+        Resources resource = new Resources(mCurrentMood, titles, contents, links, imgs);
+        ResourcesDao resourcesDao = database.resourcesDao();
+        resourcesDao.insert(mCurrentMood);
 
         // Log all the data in the database to make sure it's correct
         List<Mood> allMoods = moodDao.getAll();

@@ -26,4 +26,7 @@ public interface ResourcesDao {
 
     @Delete
     void delete(Resources resources);
+
+    @Insert
+    void insert(int mCurrentMood);
 }
