@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -72,7 +73,7 @@ public class JournalFragment extends Fragment {
         });
 
         mDatabase = AppDatabase.getDatabase(view.getContext());
-        JournalDao journalDao = mDatabase.journalDao();
+        final JournalDao journalDao = mDatabase.journalDao();
         List<Journal> allJournals = journalDao.getAll();
         mArrayList = new ArrayList<>();
         for (Journal journal : allJournals) {
@@ -83,6 +84,16 @@ public class JournalFragment extends Fragment {
 
         ListView listView = view.findViewById(R.id.journal_list_view);
         listView.setAdapter(mAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Journal entry = journalDao.getAll().get(position);
+                Intent intent = new Intent(view.getContext(), NotepadEntry.class);
+                intent.putExtra("Title", entry.title);
+                intent.putExtra("Body", entry.body);
+                startActivityForResult(intent, 0x0);
+            }
+        });
 
         mAdapter.notifyDataSetChanged();
     }

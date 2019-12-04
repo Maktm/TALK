@@ -37,5 +37,14 @@ public class NotepadEntry extends AppCompatActivity {
                 finish();
             }
         });
+
+        EditText titleEditText = findViewById(R.id.entry_title);
+        EditText bodyEditText= findViewById(R.id.entry_body);
+        if (getIntent().getStringExtra("Title") != null) {
+            titleEditText.setText(getIntent().getStringExtra("Title"));
+        }
+        if (getIntent().getStringExtra("Body") != null) {
+            bodyEditText.setText(getIntent().getStringExtra("Body"));
+        }
     }
 }
