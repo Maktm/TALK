@@ -7,6 +7,7 @@
         <item name="colorPrimaryDark">@color/colorAppSecondary</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="alertDialogStyle">@style/Theme.MaterialComponents.Dialog.Alert</item>
+        <item name="android:textColor">#FFFFFF</item>
     </style>
 
     <style name="FloatingActionBtnTheme">
@@ -18,5 +19,9 @@
         <item name="colorAccent">@color/colorAlertDialogButton</item>
         <item name="android:textColorPrimary">@color/colorAlertDialogText</item>
         <item name="android:background">@color/colorAlertDialogBackground</item>
+    </style>
+
+    <style name="PreferenceScreen" parent="Theme.AppCompat">
+        <item name="android:textColor">#ffffff</item>
     </style>
 </resources>
