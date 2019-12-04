@@ -6,7 +6,7 @@ import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
 
-@Database(entities = {Mood.class, Resources.class}, version = 1)
+@Database(entities = {Mood.class, Resources.class, Journal.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
     /**
      * The app's "single source of truth" is this database used
@@ -19,6 +19,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract MoodDao moodDao();
     public abstract ResourcesDao resourcesDao();
+    public abstract JournalDao journalDao();
 
     public static AppDatabase getDatabase(final Context context) {
         /**

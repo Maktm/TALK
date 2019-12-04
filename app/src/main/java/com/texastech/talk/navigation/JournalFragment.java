@@ -1,25 +1,52 @@
 package com.texastech.talk.navigation;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.texastech.talk.NotepadEntry;
 import com.texastech.talk.R;
+import com.texastech.talk.database.AppDatabase;
+import com.texastech.talk.database.Journal;
+import com.texastech.talk.database.JournalDao;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class JournalFragment extends Fragment {
+    private ArrayAdapter<String> mAdapter;
+    private ArrayList<String> mArrayList;
+    private AppDatabase mDatabase;
+
     public JournalFragment() {
         // Required.
     }
 
-    public static JournalFragment newInstance(String param1, String param2) {
+    public static JournalFragment newInstance() {
         return new JournalFragment();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        JournalDao journalDao = mDatabase.journalDao();
+        List<Journal> allJournals = journalDao.getAll();
+        mArrayList.clear();
+        for (Journal journal : allJournals) {
+            mArrayList.add(journal.title);
+        }
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override
@@ -28,7 +55,7 @@ public class JournalFragment extends Fragment {
     }
 
     @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+    public void onViewCreated(@NonNull final View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         /**
@@ -39,8 +66,31 @@ public class JournalFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 // TODO: Add code for creating a journal entry
+                Intent intent = new Intent(view.getContext(), NotepadEntry.class);
+                startActivityForResult(intent, 0x0);
             }
         });
+
+        mDatabase = AppDatabase.getDatabase(view.getContext());
+        JournalDao journalDao = mDatabase.journalDao();
+        List<Journal> allJournals = journalDao.getAll();
+        mArrayList = new ArrayList<>();
+        for (Journal journal : allJournals) {
+            mArrayList.add(journal.title);
+        }
+
+        mAdapter = new ArrayAdapter<String>(view.getContext(), R.layout.list_item, mArrayList);
+
+        ListView listView = view.findViewById(R.id.journal_list_view);
+        listView.setAdapter(mAdapter);
+
+        mAdapter.notifyDataSetChanged();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mAdapter.notifyDataSetChanged();
     }
 
     @Override

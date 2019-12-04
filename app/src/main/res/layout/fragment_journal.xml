@@ -16,4 +16,9 @@
         android:src="@drawable/ic_add"
         android:elevation="6dp"
         app:borderWidth="0dp"/>
+
+    <ListView
+        android:id="@+id/journal_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
 </FrameLayout>
