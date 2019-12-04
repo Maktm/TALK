@@ -2,6 +2,7 @@ package com.texastech.talk;
 
 import android.app.AlarmManager;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -13,7 +14,6 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.SystemClock;
-import android.util.Log;
 import android.widget.SeekBar;
 import android.widget.Toast;
 
@@ -29,26 +29,11 @@ import com.texastech.talk.database.AppDatabase;
 import com.texastech.talk.database.Mood;
 import com.texastech.talk.database.MoodDao;
 import com.texastech.talk.intro.IntroActivity;
-import com.texastech.talk.navigation.JournalFragment;
-import com.texastech.talk.navigation.ResourcesFragment;
-import com.texastech.talk.navigation.SettingsFragment;
-import com.texastech.talk.navigation.StatisticsFragment;
 import com.texastech.talk.notification.AlarmReceiver;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements JournalFragment.OnFragmentInteractionListener,
-        ResourcesFragment.OnFragmentInteractionListener,
-        StatisticsFragment.OnFragmentInteractionListener,
-        SettingsFragment.OnFragmentInteractionListener {
-
-    // Temporarily used to store the current mood
-    // before saving it to the database.
-    int mCurrentMood = 0;
-    int mCurrentMoodLevel = 0;
-    int mDate = 0;
-
+public class MainActivity extends AppCompatActivity {
     /**
      * This is the core, single activity that runs throughout the lifetime of
      * the application. The rest of the UI consists of fragments embedded
@@ -58,61 +43,8 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
     public static final String QUERY_MOOD_PARAMETER = "MainActivity.QueryMood";
     public static final String NOTIFICATION_CHANNEL_ID = "MainActivity.NotificationChan";
 
-    class MoodDialogListener implements DialogInterface.OnClickListener {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            /**
-             * Listens for the event in which the chooses a radio button for
-             * their mood then hits 'Next' to select the level of their mood.
-             */
-            dialog.dismiss();
-
-            AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.DarkAlertDialog);
-            SeekBar seekBar = new SeekBar(MainActivity.this);
-            seekBar.setMax(4);
-            seekBar.setOnSeekBarChangeListener(new MoodLevelOptionListener());
-
-            builder.setTitle("How intense is this feeling?");
-            builder.setView(seekBar);
-            builder.setCancelable(false);
-            builder.setPositiveButton("Save", new MoodLevelListener());
-
-            builder.show();
-        }
-    }
-
-    class MoodDialogOptionListener implements DialogInterface.OnClickListener {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            mCurrentMood = which + 1;
-        }
-    }
-
-    class MoodLevelListener implements DialogInterface.OnClickListener {
-        @Override
-        public void onClick(DialogInterface dialog, int which) {
-            /**
-             * Called when the user enters the severity of their mood. This should
-             * save the user's current mood to the database then show the message
-             * saying that the information was saved.
-             */
-            saveCurrentMood();
-            Toast.makeText(MainActivity.this, "Saved!", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    class MoodLevelOptionListener implements SeekBar.OnSeekBarChangeListener {
-        @Override
-        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-            mCurrentMoodLevel = progress + 1;
-        }
-
-        @Override
-        public void onStartTrackingTouch(SeekBar seekBar) { }
-
-        @Override
-        public void onStopTrackingTouch(SeekBar seekBar) { }
-    }
+    private int mCurrentMood = 1;
+    private int mCurrentMoodIntensity = 1;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -125,7 +57,6 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
 
         SharedPreferences sharedPrefs = PreferenceManager.getDefaultSharedPreferences(this);
         if (!sharedPrefs.getBoolean(IntroActivity.LAUNCHED_APP_BEFORE, false)) {
-            // The user is launching the app for the first time
             Intent intent = new Intent(this, IntroActivity.class);
             finish();
             startActivity(intent);
@@ -138,55 +69,20 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
     @Override
     protected void onResume() {
         /**
-         * Called whenever the app is opened when it was not open before or it
-         * was paused and is being restored. In either case, it could also be the
-         * result of hitting the notification so we check to see if that's the
-         * case and, if so, prompt the user with an AlertDialog.
+         * This callback is called when the app is being restored after being paused.
+         * This could be due to one of two reasons: the user opened the app from
+         * the app icon or by clicking a notification from Talk.
          */
         super.onResume();
 
-        boolean resumeFromNotification = getIntent().getBooleanExtra(
-                QUERY_MOOD_PARAMETER, false);
-        if (resumeFromNotification) {
-            promptForCurrentMood();
+        // TODO: Remove, this is for demo purposes
+        boolean resumingFromNotification = getIntent().getBooleanExtra(QUERY_MOOD_PARAMETER, false);
+        if (resumingFromNotification) {
+            showCurrentMoodDialog();
         } else {
-            // The user is just opening the app so for demo purposes, show
-            // them a notification that they can click.
-            // TODO: Remove.
+            // Show notification if opening the app
             showNotification();
         }
-    }
-
-    void showNotification() {
-        /**
-         * Sets the alarm to display a notification in the notification bar asking the user to hit
-         * the notification so that they get prompted to enter their mood. The notification is
-         * shown 3 seconds after requested for demo purposes.
-         * TODO: Remove.
-         */
-        Intent intent = new Intent(this, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        AlarmManager alarmMgr = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-        alarmMgr.set(
-                AlarmManager.ELAPSED_REALTIME, SystemClock.elapsedRealtime() + 3 * 1000, pendingIntent
-        );
-    }
-
-    void promptForCurrentMood() {
-        /**
-         * Shows the user a series of AlertDialog popups to ask them what their
-         * current mood is then stores the gathered information into the SQLite database.
-         */
-        CharSequence items[] = {
-                "Happy", "Sad", "Scared", "Disgusted", "Angry", "Depressed"
-        };
-
-        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.DarkAlertDialog);
-        builder.setTitle("How are you feeling?");
-        builder.setSingleChoiceItems(items, 0, new MoodDialogOptionListener());
-        builder.setPositiveButton("Next", new MoodDialogListener());
-        builder.setCancelable(false);
-        builder.show();
     }
 
     void registerNotificationChannel() {
@@ -203,7 +99,9 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
             // Register the channel with the system; you can't change the importance
             // or other notification behaviors after this
             NotificationManager notificationManager = getSystemService(NotificationManager.class);
-            notificationManager.createNotificationChannel(channel);
+            if (notificationManager != null) {
+                notificationManager.createNotificationChannel(channel);
+            }
         }
     }
 
@@ -218,50 +116,134 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
         NavigationUI.setupWithNavController(bottomNav, navController);
     }
 
-    void saveCurrentMood() {
+    void showCurrentMoodDialog() {
         /**
-         * Saves the user's current mood to the database. It should only be called
-         * after the user just got done entering in their severity level.
+         * Shows the user a dialog that asks them for their current mood then
+         * stores the result inside of an instance variable.
          */
-        Mood curretMood = new Mood(mDate++, mCurrentMood, mCurrentMoodLevel);
+        CharSequence moods[] = {
+                "Depressed", "Sad", "Angry", "Sacred", "Moderate", "Happy"
+        };
 
-        AppDatabase database = AppDatabase.getDatabase(getApplicationContext());
-        MoodDao moodDao = database.moodDao();
-//        moodDao.insert(curretMood);
-
-        // Delete everything
-        List<Mood> currentAllMoods = moodDao.getAll();
-        for (Mood mood : currentAllMoods) {
-            moodDao.delete(mood);
-        }
-
-        // Add sample data
-        List<Mood> sampleMoods = new ArrayList<>();
-        sampleMoods.add(new Mood(1, 1, 1));
-        sampleMoods.add(new Mood(2, 2, 2));
-        sampleMoods.add(new Mood(3, 3, 3));
-        sampleMoods.add(new Mood(4, 4, 4));
-        sampleMoods.add(new Mood(5, 2, 2));
-        sampleMoods.add(new Mood(6, 4, 4));
-        sampleMoods.add(new Mood(7, 1, 1));
-        for (Mood mood : sampleMoods) {
-            moodDao.insert(mood);
-        }
-
-        // Log all the data in the database to make sure it's correct
-//        List<Mood> allMoods = moodDao.getAll();
-//        Log.d("Database", String.format("The database contains %d entries", allMoods.size()));
-//        for (Mood mood : allMoods) {
-//            Log.d("Database", String.format("Row: Date=%d, Mood=%d", mood.date, mood.value));
-//        }
+        AlertDialog.Builder builder = new AlertDialog.Builder(this, R.style.DarkAlertDialog);
+        builder.setTitle("How are you feeling?");
+        builder.setSingleChoiceItems(moods, 0, new MoodDialogChoiceListener());
+        builder.setPositiveButton("Next", new MoodDialogListener());
+        builder.show();
     }
 
-    @Override
-    public void onFragmentInteraction(Uri uri) {
+    void showMoodIntensityDialog() {
         /**
-         * Danger: This is required to include the fragments used by the Android
-         * Navigation component (e.g. JournalFragment). It may not have any code
-         * but you can leave it alone so that the app doesn't crash.
+         * Shows the dialog that asks the user the intensity of the mood
          */
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.DarkAlertDialog);
+        SeekBar seekBar = new SeekBar(MainActivity.this);
+        seekBar.setMax(4);
+        seekBar.setOnSeekBarChangeListener(new MoodIntensityDialogSeekListener());
+
+        builder.setTitle("How intense is this feeling?");
+        builder.setView(seekBar);
+        builder.setPositiveButton("Save", new MoodIntesityDialogListener());
+
+        builder.show();
+    }
+
+    void saveMoodToDatabase() {
+        /**
+         * Saves the current mood state to the SQLite database.
+         */
+        AppDatabase database = AppDatabase.getDatabase(getApplicationContext());
+        MoodDao moodDao = database.moodDao();
+
+        // Get the last entered date
+        List<Mood> allMoods = moodDao.getAll();
+        int numberOfMoods = allMoods.size();
+        int lastEnteredDate = 0;
+        if (numberOfMoods > 0) {
+             lastEnteredDate = allMoods.get(numberOfMoods - 1).date;
+        }
+
+        // Create the new Mood
+        Mood currentMood = new Mood(lastEnteredDate + 1, mCurrentMood, mCurrentMoodIntensity);
+        moodDao.insert(currentMood);
+
+        // Ask the user (again)
+        showNotification();
+    }
+
+    void showNotification() {
+        /**
+         * Sets the alarm to display a notification in the notification bar asking the user to hit
+         * the notification so that they get prompted to enter their mood. The notification is
+         * shown 3 seconds after requested for demo purposes.
+         * TODO: Remove.
+         */
+        Intent intent = new Intent(this, AlarmReceiver.class);
+        PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
+        AlarmManager alarmMgr = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+        if (alarmMgr != null) {
+            alarmMgr.set(
+                    AlarmManager.ELAPSED_REALTIME,
+                    SystemClock.elapsedRealtime() + 2 * 1000,
+                    pendingIntent
+            );
+        }
+    }
+
+    class MoodDialogListener implements DialogInterface.OnClickListener {
+        /**
+         * Listeners for the click event when the user chooses the mood
+         * that they're in and hits the submit button.
+         */
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            showMoodIntensityDialog();
+        }
+    }
+
+    class MoodDialogChoiceListener implements DialogInterface.OnClickListener {
+        /**
+         * Listens for the event in which the user chooses a different mood
+         * from the multiple choice menu.
+         */
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            // Offset the choice because it goes from 0-5
+            mCurrentMood = which + 1;
+        }
+    }
+
+    class MoodIntesityDialogListener implements DialogInterface.OnClickListener {
+        /**
+         * Listens for the event in which the user chooses a mood intensity
+         * using the SeekBar then hits the submit button.
+         */
+        @Override
+        public void onClick(DialogInterface dialog, int which) {
+            saveMoodToDatabase();
+            Toast.makeText(MainActivity.this, "Saved", Toast.LENGTH_LONG).show();
+        }
+    }
+
+    class MoodIntensityDialogSeekListener implements SeekBar.OnSeekBarChangeListener {
+        /**
+         * Listens for updates on the SeekBar used to get the user's current mood.
+         * The data is stored which is then used to save to the local SQLite database.
+         */
+        @Override
+        public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+            // Progress goes from 0-5 but we use 1-6
+            mCurrentMoodIntensity = progress + 1;
+        }
+
+        @Override
+        public void onStartTrackingTouch(SeekBar seekBar) {
+
+        }
+
+        @Override
+        public void onStopTrackingTouch(SeekBar seekBar) {
+
+        }
     }
 }

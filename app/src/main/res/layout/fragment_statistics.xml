@@ -9,18 +9,18 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
+        android:layout_marginStart="9dp"
         android:layout_marginTop="25dp"
         android:fontFamily="sans-serif-medium"
         android:text="Past 7 days"
         android:textColor="@android:color/white"
-        android:textSize="28sp" />
+        android:textSize="24sp" />
 
     <View
         android:id="@+id/view"
         android:layout_width="330dp"
         android:layout_height="0.1sp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_gravity="center"
         android:background="@color/colorBottomNavSeparator"/>
@@ -28,8 +28,8 @@
     <com.github.mikephil.charting.charts.LineChart
         android:id="@+id/mood_chart"
         android:layout_width="340dp"
-        android:layout_height="200dp"
-        android:layout_marginLeft="10dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="12dp"
         android:layout_marginTop="10dp"/>
 
 </LinearLayout>

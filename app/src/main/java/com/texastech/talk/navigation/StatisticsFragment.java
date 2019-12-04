@@ -1,19 +1,16 @@
 package com.texastech.talk.navigation;
 
-import android.content.Context;
 import android.graphics.Color;
-import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
-
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
 import com.github.mikephil.charting.charts.LineChart;
 import com.github.mikephil.charting.components.XAxis;
@@ -32,62 +29,88 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link StatisticsFragment.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link StatisticsFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class StatisticsFragment extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
+    /**
+     * Fragment responsible for displaying the statistics information
+     * to the user. This information is mainly the moods graph that displays a
+     * user's moods over the past week.
+     */
     public StatisticsFragment() {
-        // Required empty public constructor
+        // Required.
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment StatisticsFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static StatisticsFragment newInstance(String param1, String param2) {
-        StatisticsFragment fragment = new StatisticsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    public static StatisticsFragment newInstance() {
+        /**
+         * TODO: This is missing the original params from the previous version
+         *  so make sure not to introduce bugs by refactoring. Also determine
+         *  if this is required by the Navigation component. If not, remove.
+         */
+        return new StatisticsFragment();
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater,
+                             @Nullable ViewGroup container,
+                             @Nullable Bundle savedInstanceState) {
+        return inflater.inflate(R.layout.fragment_statistics, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        /**
+         * This basically acts as a view refresh function so it's what we use to
+         * display the graph information with the latest information.
+         */
         super.onViewCreated(view, savedInstanceState);
 
-        // Draw the graph
+        drawMoodGraph(view);
+    }
+
+    private List<Mood> getPastWeekMoods(View view) {
+        /**
+         * Gets the user's moods from the past 7 days.
+         */
+        AppDatabase database = AppDatabase.getDatabase(view.getContext());
+        MoodDao moodDao = database.moodDao();
+
+        List<Mood> pastMoods = new ArrayList<>();
+        List<Mood> allMoods = moodDao.getAll();
+        for (int i = 0; i < 7 && i < allMoods.size(); i++) {
+            pastMoods.add(allMoods.get(i));
+        }
+
+        return pastMoods;
+    }
+
+    private void drawMoodGraph(View view) {
+        /**
+         * Uses MPAndroidChart to draw the mood graph.
+         */
         AppDatabase database = AppDatabase.getDatabase(view.getContext());
         MoodDao moodDao = database.moodDao();
         List<Mood> allMoods = moodDao.getAll();
+        List<Mood> pastWeekMoods = new ArrayList<>();
+        int count = 0;
+        for (int i = allMoods.size() - 1; i >= 0 && count < 7; i--) {
+            pastWeekMoods.add(allMoods.get(i));
+            count++;
+        }
+        Log.d("SizeLog", String.format("Got last %d elements", pastWeekMoods.size()));
 
+        int offset = 0;
+        if (pastWeekMoods.size() > 0) {
+            offset = pastWeekMoods.get(pastWeekMoods.size() - 1).date;
+        }
         List<Entry> entries = new ArrayList<>();
-        for (Mood mood : allMoods) {
-            Log.d("Statistics", String.format("Found entry: %d %d", mood.date, mood.value));
-            entries.add(new Entry(mood.date, mood.value));
+        for (Mood mood : pastWeekMoods) {
+            Log.d("Statistics", String.format("Found entry: %d %d", mood.date - offset, mood.value));
+            entries.add(new Entry(mood.date - offset, mood.value));
         }
         Collections.sort(entries, new EntryXComparator());
 
@@ -113,6 +136,7 @@ public class StatisticsFragment extends Fragment {
         XAxis xAxis = chart.getXAxis();
         xAxis.setPosition(XAxis.XAxisPosition.BOTTOM);
         xAxis.disableAxisLineDashedLine();
+        xAxis.setDrawLabels(false);
 
         String[] weekdays = {"Sun", "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
         xAxis.setValueFormatter(new IndexAxisValueFormatter(weekdays));
@@ -123,60 +147,5 @@ public class StatisticsFragment extends Fragment {
         LineData lineData = new LineData(dataSet);
         chart.setData(lineData);
         chart.invalidate();
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_statistics, container, false);
-    }
-
-    // TODO: Rename method, update argument and hook method into UI event
-    public void onButtonPressed(Uri uri) {
-        if (mListener != null) {
-            mListener.onFragmentInteraction(uri);
-        }
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        mListener = null;
-    }
-
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
-    public interface OnFragmentInteractionListener {
-        // TODO: Update argument type and name
-        void onFragmentInteraction(Uri uri);
     }
 }
