@@ -27,8 +27,6 @@ public class VideoActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video);
 
-        getWindow.setFormat(PixelFormat.UNKNOWN);
-
         vid = (VideoView)findViewById(R.id.videoView);
         m = new MediaController(this);
 
