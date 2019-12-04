@@ -26,6 +26,8 @@ import androidx.preference.PreferenceManager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.texastech.talk.database.AppDatabase;
+import com.texastech.talk.database.Journal;
+import com.texastech.talk.database.JournalDao;
 import com.texastech.talk.database.Mood;
 import com.texastech.talk.database.MoodDao;
 import com.texastech.talk.database.Resources;
@@ -54,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
     String contents = "FILLER TEXT FILLER TEXT FILLER TEXT";
     String links = "http://www.somewebsite.com/index.html";
     String imgs = "picture.jpg";
+    int date=2131;
+    String text= "This article...";
+    String title= "Title here:";
 
     /**
      * This is the core, single activity that runs throughout the lifetime of
@@ -242,6 +247,12 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
         Resources resource = new Resources(mCurrentMood, titles, contents, links, imgs);
         ResourcesDao resourcesDao = database.resourcesDao();
         resourcesDao.insert(mCurrentMood);
+
+        Journal journal= new Journal(date, text, title);
+        JournalDao journalDao= database.journalDao();
+        journalDao.insert(journal);
+
+
 
         /**
          * Generates what would be the different entries for the resources database.

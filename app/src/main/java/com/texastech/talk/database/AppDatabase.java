@@ -19,6 +19,7 @@ public abstract class AppDatabase extends RoomDatabase {
 
     public abstract MoodDao moodDao();
     public abstract ResourcesDao resourcesDao();
+    public abstract JournalDao journalDao();
 
     public static AppDatabase getDatabase(final Context context) {
         /**
