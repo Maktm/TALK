@@ -50,10 +50,10 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
     int mCurrentMoodLevel = 0;
     int mSeverityLevel = 0;
     //Temporary values for creating resource database
-    String titles = "";
-    String contents = "";
-    String links = "";
-    String imgs = "";
+    String titles = "TITLE HERE";
+    String contents = "FILLER TEXT FILLER TEXT FILLER TEXT";
+    String links = "http://www.somewebsite.com/index.html";
+    String imgs = "picture.jpg";
 
     /**
      * This is the core, single activity that runs throughout the lifetime of
@@ -242,6 +242,15 @@ public class MainActivity extends AppCompatActivity implements JournalFragment.O
         Resources resource = new Resources(mCurrentMood, titles, contents, links, imgs);
         ResourcesDao resourcesDao = database.resourcesDao();
         resourcesDao.insert(mCurrentMood);
+
+        /**
+         * Generates what would be the different entries for the resources database.
+         * Since manually typing in all the individual content is too wonky,
+         * we're inserting multiple entries of filler text.
+         */
+        for (int i = 0; i < 8; i++) {
+            resourcesDao.insert(resource);
+        }
 
         // Log all the data in the database to make sure it's correct
         List<Mood> allMoods = moodDao.getAll();

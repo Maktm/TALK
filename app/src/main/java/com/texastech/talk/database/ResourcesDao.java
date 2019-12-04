@@ -29,4 +29,5 @@ public interface ResourcesDao {
 
     @Insert
     void insert(int mCurrentMood);
+
 }
