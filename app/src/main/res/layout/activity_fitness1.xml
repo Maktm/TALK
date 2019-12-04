@@ -6,6 +6,16 @@
     android:layout_height="match_parent"
     tools:context=".Fitness1">
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1">
+
     <TextView
         android:id="@+id/fitness1"
         android:layout_width="wrap_content"
@@ -24,7 +34,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:scrollbars="vertical"
-        android:text="Try some simple and easy Yoga poses to calm yourself"
+        android:text="Yoga is an ancient set of beliefs in the Hindu, Buddhist, and Jain traditions that strives towards spiritual discipline.[1] In the West, yoga is less understood for its spiritual component and more commonly known as a physical workout of specific poses, or asanas. It's actually not just something you 'do' but something that you practice to strengthen, relax, and energize your body and mind. Any person can practice yoga, from Asana practice to meditation and breathing."
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,4 +42,54 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.121" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pose1" />
+
+        <TextView
+            android:id="@+id/fitnesscontents2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:text="
+Determine a focus for your yoga practice. Before starting yoga, it can help to figure out why you want to practice. Yoga can be a method of physical exercise, a way to reduce and manage stress, a means of healing an illness or injury, or a path to spiritual fulfillment and peace.
+Think about which components of wellness you want to work on, such as strength, flexibility, stamina, anxiety, and depression. You might also want to practice for your general well-being.
+Consider writing down your focus for your practice. Update it frequently and revise it as you become more familiar with yoga and grow as a student.[2] For example, you could have a goal such as “I want to practice for at least 5 minutes every day” or “I want to build enough strength to do an arm balance posture like Lolasana.”"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.054"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.121" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/pose2" />
+
+        <TextView
+            android:id="@+id/fitnesscontents3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:text="Be aware that there is no such thing as 'good' or “right” yoga. There are different styles and ways to practice yoga and there will always be more experienced yoga practitioners than you. It’s important to remember that yoga is neither a competition nor a traditional sport, but a personal practice of mindfulness, relaxation, and physicality that is meant to enrich your life and body. There is no right or wrong way to do yoga. Your practice should be about your journey first and foremost.[3]
+Anyone can practice and benefit from yoga. Integrating yoga into your routine can help improve your physical and mental health, even if you only practice for 10 minutes a day.[4]
+It can take some time to find a specific style or school of yoga you enjoy. Similarly, finding the right teacher for you and your goals can take some trial and error.
+Practice keeping an open mind and adopt a non-judgmental attitude. Instead of thinking, 'I'm not flexible, I'll be bad at yoga,' realize that 'Yoga is about the flexibility of the mind, not the flexibility of the body.'
+        'Remember that there is no competition in yoga. Every person has different abilities and the goal of yoga is to focus on yourself, not what others are doing.'"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.054"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.121" />
+
+    </TableLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

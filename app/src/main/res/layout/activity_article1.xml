@@ -7,6 +7,16 @@
     android:scrollbars="vertical"
     tools:context=".Article1">
 
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:stretchColumns="1">
+
     <TextView
         android:id="@+id/title1"
         android:layout_width="wrap_content"
@@ -20,6 +30,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.023" />
 
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sadness" />
+
     <TextView
         android:id="@+id/contents1"
         android:layout_width="399dp"
@@ -28,18 +44,55 @@
 Several studies suggest that crying is a useful coping mechanism because it communicates pain to others. It may also encourage others to show support.
 Dr. William Frey’s idea that crying removes toxins from the body is very popular in the media. This may be true, although the amount of toxins eliminated by crying is negligible. Most tears are reabsorbed in your nasal cavity.
 One study suggested that whether you feel better after crying is linked to how your culture views crying. If your culture (or even your family) views crying as something shameful, you may not feel better after crying.
-Don’t make yourself cry if you don’t feel like it. While popular wisdom holds that not crying after a sadness-provoking incident is unhealthy, this is not the case. Crying because you feel obligated to may actually keep you from recovering.
-
-2. Exercise. Several studies have shown that exercise releases endorphins and other chemicals that can help fight sadness. One study showed that participants who did moderate exercise over a 10-week period felt more energetic, positive, and calm than those who did not. In addition, the benefits of exercise were greater for people experiencing depressed mood.
-Exercise will also give you a time to focus on one specific goal. This may help distract you from focusing on your sadness.
-You don’t have to run a marathon or be a gym rat to see the benefits of exercise. Even light activities such as gardening and walking show a positive effect.
-
-3. Smile. Several studies have shown that smiling, even when you are sad, can help you feel better. Duchenne smiles, or smiles that engage your eye muscles as well as those near your mouth, have the strongest positive effect on your mood. So if you are feeling sad, try to smile. Even if you don’t feel like it at first, it may help you feel more positive. In fact, there are 19 types of smiles that you can perform.
-Research has also showed the opposite: people who frown when they feel unhappy are likely to feel more unhappy than those who do not (or cannot) frown."
+Don’t make yourself cry if you don’t feel like it. While popular wisdom holds that not crying after a sadness-provoking incident is unhealthy, this is not the case. Crying because you feel obligated to may actually keep you from recovering."
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.937" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sadness2" />
+
+        <TextView
+            android:id="@+id/contents2"
+            android:layout_width="399dp"
+            android:layout_height="651dp"
+            android:text="
+2. Exercise. Several studies have shown that exercise releases endorphins and other chemicals that can help fight sadness. One study showed that participants who did moderate exercise over a 10-week period felt more energetic, positive, and calm than those who did not. In addition, the benefits of exercise were greater for people experiencing depressed mood.
+Exercise will also give you a time to focus on one specific goal. This may help distract you from focusing on your sadness.
+You don’t have to run a marathon or be a gym rat to see the benefits of exercise. Even light activities such as gardening and walking show a positive effect."
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.937" />
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/sadness3" />
+
+        <TextView
+            android:id="@+id/contents3"
+            android:layout_width="399dp"
+            android:layout_height="651dp"
+            android:text="
+3. Smile. Several studies have shown that smiling, even when you are sad, can help you feel better. Duchenne smiles, or smiles that engage your eye muscles as well as those near your mouth, have the strongest positive effect on your mood. So if you are feeling sad, try to smile. Even if you don’t feel like it at first, it may help you feel more positive. In fact, there are 19 types of smiles that you can perform.
+Research has also showed the opposite: people who frown when they feel unhappy are likely to feel more unhappy than those who do not (or cannot) frown."
+            android:textSize="18sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.937" />
+
+    </TableLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
