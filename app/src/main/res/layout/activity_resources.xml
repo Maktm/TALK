@@ -65,6 +65,8 @@
 
                 <Button
                     android:id="@+id/cardButtonS"
+                    android:background="@color/lightblue"
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="More"
@@ -124,6 +126,8 @@
 
                 <Button
                     android:id="@+id/cardButtonV"
+                    android:background="@color/lightblue"
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="More"
@@ -183,6 +187,8 @@
 
                 <Button
                     android:id="@+id/cardButtonF1"
+                    android:background="@color/lightblue"
+                    android:textColor="@android:color/black"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="More"
