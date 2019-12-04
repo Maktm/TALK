@@ -22,8 +22,8 @@ public interface ResourcesDao {
     void insert(Resources resources);
 
     @Insert
-    void insertAll(Resources ... resources);
+    void insertAll(Resources... resources);
 
     @Delete
-    void delete(Resources resources);
+    void delete(Resources resource);
 }

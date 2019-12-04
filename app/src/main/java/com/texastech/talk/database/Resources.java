@@ -4,32 +4,24 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-/**
- * TODO: Add conversion class for the dates if necessary. You can
- *  as a UNIX timestamp then convert to/from the normal date/time format.
- */
-
 @Entity
 public class Resources {
     /**
-     * This is the lower-level table to store the information regarding the resources
-     * available in the app.
+     * Entity used to store the resources that are suggested to the user
+     * based on their past moods. The suggested resources are displayed
+     * as CardView objects with a "LEARN MORE" button.
      *
      * The lower-level table looks like the following:
      *
-     * -----------------------------------
-     * | ID | Mood | Title               |
-     * -----------------------------------
-     * | 0  | 2    | "How to..."         |
-     * | 1  | 3    | "What to do..."     |
-     * | .. | ...  | ...                 |
-     * -----------------------------------
+     * --------------------------------------------
+     * | rid | title | content | hyperlink | mood |
+     * |-------------------------------------------
+     * | 0   | depr  | this is | https://  | 1    |
+     * | ... | ...   | ...     | ...       | ...  |
+     * |-------------------------------------------
      */
     @PrimaryKey(autoGenerate = true)
-    int mid;
-
-    @ColumnInfo(name = "mood")
-    public int mood;
+    int rid;
 
     @ColumnInfo(name = "title")
     public String title;
@@ -37,17 +29,16 @@ public class Resources {
     @ColumnInfo(name = "content")
     public String content;
 
-    @ColumnInfo(name = "link")
-    public String link;
+    @ColumnInfo(name = "hyperlink")
+    public String hyperlink;
 
-    @ColumnInfo(name = "img")
-    public String img;
+    @ColumnInfo(name = "mood")
+    public int mood;
 
-    public Resources(int mood, String title, String content, String link, String img) {
-        this.mood = mood;
-        this.title = title;
-        this.content = content;
-        this.link = link;
-        this.img = img;
+    public Resources(String title, String content, String hyperlink, int mood) {
+       this.title = title;
+       this.content = content;
+       this.hyperlink = hyperlink;
+       this.mood = mood;
     }
 }

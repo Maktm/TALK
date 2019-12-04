@@ -103,14 +103,10 @@ public class StatisticsFragment extends Fragment {
         }
         Log.d("SizeLog", String.format("Got last %d elements", pastWeekMoods.size()));
 
-        int offset = 0;
-        if (pastWeekMoods.size() > 0) {
-            offset = pastWeekMoods.get(pastWeekMoods.size() - 1).date;
-        }
         List<Entry> entries = new ArrayList<>();
         for (Mood mood : pastWeekMoods) {
-            Log.d("Statistics", String.format("Found entry: %d %d", mood.date - offset, mood.value));
-            entries.add(new Entry(mood.date - offset, mood.value));
+            Log.d("Statistics", String.format("Found entry: %d %d", mood.date, mood.value));
+            entries.add(new Entry(mood.date, mood.value));
         }
         Collections.sort(entries, new EntryXComparator());
 
