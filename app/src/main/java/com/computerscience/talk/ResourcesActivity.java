@@ -23,9 +23,37 @@ public class ResourcesActivity extends Activity {
         setContentView(R.layout.activity_resources);
     }
 
-    public void openArticle(View view)
+    public void openArticle1(View view)
     {
         startActivity(new Intent(ResourcesActivity.this, Article1.class));
+    }
+
+    public void openArticle2(View view)
+    {
+        startActivity(new Intent(ResourcesActivity.this, Article2.class));
+    }
+
+    public void openArticle3(View view)
+    {
+        startActivity(new Intent(ResourcesActivity.this, Article3.class));
+    }
+
+    public void openArticle4(View view)
+    {
+        startActivity(new Intent(ResourcesActivity.this, Article4.class));
+    }
+
+    public void openVideo(View view) {
+        startActivity(new Intent(ResourcesActivity.this, VideoActivity.class));
+    }
+
+    public void openFit1(View view) {
+        startActivity(new Intent(ResourcesActivity.this, Fitness1.class));
+    }
+
+    public void openFit2(View view)
+    {
+        startActivity(new Intent(ResourcesActivity.this, Fitness2.class));
     }
 
 }
