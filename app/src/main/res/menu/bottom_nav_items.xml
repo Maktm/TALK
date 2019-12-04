@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- TODO: Add icons using SVG images then check the sizes -->
+    <item android:id="@+id/journalFragment"
+        android:title="@string/menu_journal"
+        android:icon="@drawable/ic_journal"/>
+    <item android:id="@+id/resourcesFragment"
+        android:title="@string/menu_resources"
+        android:icon="@drawable/ic_resources"/>
+    <item android:id="@+id/statisticsFragment"
+        android:title="@string/menu_statistics"
+        android:icon="@drawable/ic_statistics"/>
+    <item android:id="@+id/settingsFragment"
+        android:title="@string/menu_settings"
+        android:icon="@drawable/ic_settings"/>
+</menu>

@@ -2,10 +2,21 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
-        <!-- Customize your theme here. -->
-        <item name="colorPrimary">@color/colorPrimary</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <!-- Primary and secondary are the same for now -->
+        <item name="colorPrimary">@color/colorAppPrimary</item>
+        <item name="colorPrimaryDark">@color/colorAppSecondary</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="alertDialogStyle">@style/Theme.MaterialComponents.Dialog.Alert</item>
     </style>
 
+    <style name="FloatingActionBtnTheme">
+        <item name="android:backgroundTint">@color/colorBottomNavActive</item>
+        <item name="android:tint">@android:color/white</item>
+    </style>
+
+    <style name="DarkAlertDialog" parent="Theme.MaterialComponents.Dialog.Alert">
+        <item name="colorAccent">@color/colorAlertDialogButton</item>
+        <item name="android:textColorPrimary">@color/colorAlertDialogText</item>
+        <item name="android:background">@color/colorAlertDialogBackground</item>
+    </style>
 </resources>
