@@ -1,5 +1,7 @@
 # TALK
-Android based application for tracking your mental health
+Android app for improving your mood by tracking it daily and resource suggestions.
+
+![](assets/sample.gif)
 
 ## Setting up the project
 Install `git` if you do not already have it installed from [here](https://git-scm.com/).
